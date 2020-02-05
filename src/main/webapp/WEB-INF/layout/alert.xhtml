@@ -1,0 +1,24 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:c="http://java.sun.com/jsp/jstl/core"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <ui:fragment rendered="#{not empty facesContext.messageList}">
+
+        <ui:repeat var="message" value="#{facesContext.messageList}">
+            <div class="alert #{message.severity.ordinal==0?'alert-success':(message.severity.ordinal==1?'alert-warning':'alert-danger')}">
+                #{message.summary}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span class="fa fa-times-circle" aria-hidden="true">${null}</span>
+                </button>
+            </div>
+        </ui:repeat>
+
+<!--        <h:messages id="messages" layout="vertical" globalOnly="true"
+                    styleClass="list-unstyled" showSummary="true" showDetail="false"
+                    errorClass="alert alert-danger" infoClass="alert alert-info"
+                    warnClass="alert alert-warning" >
+        </h:messages>-->
+
+    </ui:fragment>
+</ui:composition>

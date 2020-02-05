@@ -1,0 +1,22 @@
+@CHARSET "UTF-8";
+
+main > .container {
+    padding: 60px 15px 0;
+}
+
+dl dt{
+    font-weight: bold;
+}
+dl dt, dl dd{
+    padding: 10px !important;
+}
+
+footer {
+    margin-top: 15px;
+    background-color: #f5f5f5;
+}
+
+.footer > .container {
+    padding-right: 15px;
+    padding-left: 15px;
+}
