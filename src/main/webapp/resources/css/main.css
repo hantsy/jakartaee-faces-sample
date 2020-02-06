@@ -10,6 +10,9 @@ dl dt{
 dl dt, dl dd{
     padding: 10px !important;
 }
+span.fa{
+    margin: 0 2px;
+}
 
 footer {
     margin-top: 15px;
