@@ -26,6 +26,9 @@ public class TaskHome implements Serializable {
 
     //@Inject
     private static final Logger log = Logger.getLogger(TaskHome.class.getName());
+    
+    @Inject 
+    FacesContext facesContext;
 
     @Inject
     private TaskRepository taskRepository;
@@ -91,7 +94,7 @@ public class TaskHome implements Serializable {
         retrieveAllTasks();
 
         FacesMessage deleteInfo = new FacesMessage(FacesMessage.SEVERITY_WARN, "Task is deleted!", "Task is deleted!");
-        FacesContext.getCurrentInstance().addMessage(null, deleteInfo);
+        facesContext.addMessage(null, deleteInfo);
     }
 
     public void markTaskDoing(Long id) {

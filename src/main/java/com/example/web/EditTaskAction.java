@@ -29,6 +29,9 @@ public class EditTaskAction implements Serializable {
 
     //@Inject
     private static final Logger LOG = Logger.getLogger(EditTaskAction.class.getName());
+    
+    @Inject
+    FacesContext facesContext;
 
     @Inject
     private TaskRepository taskRepository;
@@ -73,7 +76,7 @@ public class EditTaskAction implements Serializable {
             this.task = taskRepository.update(task);
         }
         FacesMessage info = new FacesMessage( "Task is saved successfully!");
-        FacesContext.getCurrentInstance().addMessage(null, info);
+        facesContext.addMessage(null, info);
 
         return "/tasks.xhtml?faces-redirect=true";
     }

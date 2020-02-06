@@ -11,6 +11,7 @@ import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.faces.context.FacesContext;
 
 /**
  *
@@ -39,10 +40,10 @@ public class ViewTaskDetailsAction implements Serializable {
 
     public void init() {
 
-        log.log(Level.INFO, "get task details of id @" + taskId);
+        log.log(Level.INFO, "get task details of id @{0}", taskId);
 
         task = taskRepository.findOptionalById(taskId)
-                    .orElseThrow(()-> new TaskNotFoundException(taskId));
+                .orElseThrow(() -> new TaskNotFoundException(taskId));
 
     }
 
