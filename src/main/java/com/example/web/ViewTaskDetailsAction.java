@@ -22,13 +22,9 @@ import javax.faces.context.FacesContext;
 @ViewScoped()
 public class ViewTaskDetailsAction implements Serializable {
 
-    /**
-     *
-     */
     private static final long serialVersionUID = 1L;
 
-    //@Inject
-    private static final Logger log = Logger.getLogger(ViewTaskDetailsAction.class.getName());
+    private static final Logger LOGGER = Logger.getLogger(ViewTaskDetailsAction.class.getName());
 
     @Inject
     private TaskRepository taskRepository;
@@ -40,7 +36,7 @@ public class ViewTaskDetailsAction implements Serializable {
 
     public void init() {
 
-        log.log(Level.INFO, "get task details of id @{0}", taskId);
+        LOGGER.log(Level.INFO, "get task details of id @{0}", taskId);
 
         task = taskRepository.findOptionalById(taskId)
                 .orElseThrow(() -> new TaskNotFoundException(taskId));

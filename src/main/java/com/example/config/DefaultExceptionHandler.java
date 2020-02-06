@@ -17,7 +17,6 @@ import javax.faces.application.ViewHandler;
 
 public class DefaultExceptionHandler extends ExceptionHandlerWrapper {
 
-    //@Inject
     private final static Logger LOG = Logger.getLogger(DefaultExceptionHandler.class.getName());
 
     public DefaultExceptionHandler(ExceptionHandler wrapped) {

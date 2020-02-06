@@ -3,7 +3,7 @@
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
                 xmlns:f="http://xmlns.jcp.org/jsf/core"
                 xmlns:h="http://xmlns.jcp.org/jsf/html">
-    <ui:fragment rendered="#{not empty facesContext.messageList}">
+    <ui:fragment rendered="#{not facesContext.validationFailed and not empty facesContext.messageList}">
 
         <ui:repeat var="message" value="#{facesContext.messageList}">
             <div class="alert #{message.severity.ordinal==0?'alert-success':(message.severity.ordinal==1?'alert-warning':'alert-danger')}">

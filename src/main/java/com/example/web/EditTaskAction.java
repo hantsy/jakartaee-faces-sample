@@ -28,7 +28,7 @@ public class EditTaskAction implements Serializable {
     private static final long serialVersionUID = 1L;
 
     //@Inject
-    private static final Logger LOG = Logger.getLogger(EditTaskAction.class.getName());
+    private static final Logger LOGGER = Logger.getLogger(EditTaskAction.class.getName());
     
     @Inject
     FacesContext facesContext;
@@ -57,7 +57,7 @@ public class EditTaskAction implements Serializable {
     }
 
     public void init() {
-        LOG.log(Level.INFO, " get task of id @{0}", taskId);
+        LOGGER.log(Level.INFO, " get task of id @{0}", taskId);
 
         if (taskId == null) {
             task = new Task();
@@ -69,7 +69,7 @@ public class EditTaskAction implements Serializable {
     }
 
     public String save() {
-        LOG.log(Level.INFO, "saving task@{0}", task);
+        LOGGER.log(Level.INFO, "saving task@{0}", task);
         if (this.task.getId() == null) {
             this.task = taskRepository.save(task);
         } else {

@@ -25,7 +25,7 @@ import java.util.logging.Logger;
 public class TaskHome implements Serializable {
 
     //@Inject
-    private static final Logger log = Logger.getLogger(TaskHome.class.getName());
+    private static final Logger LOGGER = Logger.getLogger(TaskHome.class.getName());
     
     @Inject 
     FacesContext facesContext;
@@ -52,12 +52,12 @@ public class TaskHome implements Serializable {
     }
 
     public void init() {
-        log.log(Level.INFO, "initalizing TaskHome...");
+        LOGGER.log(Level.INFO, "initalizing TaskHome...");
         retrieveAllTasks();
     }
 
     private void retrieveAllTasks() {
-        log.log(Level.INFO, "retriveing all tasks...");
+        LOGGER.log(Level.INFO, "retriveing all tasks...");
         this.todotasks = findTasksByStatus(Task.Status.TODO);
         this.doingtasks = findTasksByStatus(Task.Status.DOING);
         this.donetasks = findTasksByStatus(Task.Status.DONE);
@@ -84,7 +84,7 @@ public class TaskHome implements Serializable {
 
     public void deleteTask(Long id) {
 
-        log.log(Level.INFO, "delete task of id@{0}", id);
+        LOGGER.log(Level.INFO, "delete task of id@{0}", id);
 
         Task  task= taskRepository.findOptionalById(id)
                     .orElseThrow(()-> new TaskNotFoundException(id));
@@ -98,7 +98,7 @@ public class TaskHome implements Serializable {
     }
 
     public void markTaskDoing(Long id) {
-        log.log(Level.INFO, "changing task DONG @{0}", id);
+        LOGGER.log(Level.INFO, "changing task DONG @{0}", id);
 
         Task task = taskRepository.findOptionalById(id)
                     .orElseThrow(()-> new TaskNotFoundException(id));
@@ -110,7 +110,7 @@ public class TaskHome implements Serializable {
     }
 
     public void markTaskDone(Long id) {
-        log.log(Level.INFO, "changing task DONE @{0}", id);
+        LOGGER.log(Level.INFO, "changing task DONE @{0}", id);
 
         Task task = taskRepository.findOptionalById(id)
                     .orElseThrow(()-> new TaskNotFoundException(id));
