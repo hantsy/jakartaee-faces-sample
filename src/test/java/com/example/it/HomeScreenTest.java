@@ -38,14 +38,14 @@ public class HomeScreenTest {
 
     @Deployment(testable = false)
     public static WebArchive createDeployment() {
-        File[] extraJars = Maven.resolver().loadPomFromFile("pom.xml")
-                .resolve(
-                        "org.eclipse.krazo:krazo-jersey:1.0.0"
-                )
-                .withTransitivity()
-                .asFile();
+//        File[] extraJars = Maven.resolver().loadPomFromFile("pom.xml")
+//                .resolve(
+//                        "org.eclipse.krazo:krazo-jersey:1.0.0"
+//                )
+//                .withTransitivity()
+//                .asFile();
         WebArchive war = ShrinkWrap.create(WebArchive.class)
-                .addAsLibraries(extraJars)
+//                .addAsLibraries(extraJars)
                 .addPackage(Bootstrap.class.getPackage())
                 .addPackage(Task.class.getPackage())
                 .addPackage(FacesConfigurationBean.class.getPackage())
@@ -67,10 +67,6 @@ public class HomeScreenTest {
 
     @ArquillianResource
     private URL deploymentUrl;
-
-    @Drone
-    private WebDriver browser;
-    
 
     @Test
     @RunAsClient
