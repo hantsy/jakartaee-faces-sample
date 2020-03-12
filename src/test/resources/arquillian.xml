@@ -4,7 +4,7 @@
     http://jboss.org/schema/arquillian/arquillian_1_0.xsd">
       
     <extension qualifier="drone">
-        <property name="instantiationTimeoutInSeconds">120</property>
+        <property name="instantiationTimeoutInSeconds">180</property>
     </extension>
 
     <extension qualifier="webdriver">

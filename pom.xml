@@ -28,6 +28,8 @@
 
         <!-- Arquillian BOM -->
         <arquillian-bom.version>1.5.0.Final</arquillian-bom.version>
+        <version.org.jboss.arquillian.drone>2.4.5</version.org.jboss.arquillian.drone>
+        <version.org.jboss.arquillian.graphene>2.3.2</version.org.jboss.arquillian.graphene>
         
         <!-- Glassfish server -->
         <glassfish.version>5.1.0</glassfish.version>
@@ -76,44 +78,37 @@
             </dependency>
             
             <!-- Selenium bom is optional -->
-            <dependency>                                      
+            <!-- Selenium BOM -->
+            <dependency>
                 <groupId>org.jboss.arquillian.selenium</groupId>
                 <artifactId>selenium-bom</artifactId>
-                <version>3.13.0</version>
+                <version>3.8.1</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
+            <!-- Arquillian Drone dependencies and WebDriver/Selenium dependencies -->
             <dependency>
                 <groupId>org.jboss.arquillian.extension</groupId>
                 <artifactId>arquillian-drone-bom</artifactId>
-                <version>2.4.3</version>
+                <version>${version.org.jboss.arquillian.drone}</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
-
-            <!-- NOTE: MVC is NOT part of the final Java EE/JatartaEE 8, add them into dependencies explicitly. -->
-            <!-- https://mvnrepository.com/artifact/javax.mvc/javax.mvc-api -->
+            <!-- To use Arquillian Graphene 2-->
             <dependency>
-                <groupId>javax.mvc</groupId>
-                <artifactId>javax.mvc-api</artifactId>
-                <version>1.0.0</version>
-                <!--<scope>provided</scope>-->
+                <groupId>org.jboss.arquillian.graphene</groupId>
+                <artifactId>graphene-webdriver</artifactId>
+                <version>${version.org.jboss.arquillian.graphene}</version>
+                <type>pom</type>
+                <scope>test</scope>
             </dependency>
-            <!-- https://mvnrepository.com/artifact/org.eclipse.krazo/krazo-jersey -->
+            <!-- To use WebDriver -->
             <dependency>
-                <groupId>org.eclipse.krazo</groupId>
-                <artifactId>krazo-jersey</artifactId>
-                <version>${krazo.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.eclipse.krazo</groupId>
-                <artifactId>krazo-resteasy</artifactId>
-                <version>${krazo.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.eclipse.krazo</groupId>
-                <artifactId>krazo-cxf</artifactId>
-                <version>${krazo.version}</version>
+                <groupId>org.jboss.arquillian.extension</groupId>
+                <artifactId>arquillian-drone-webdriver-depchain</artifactId>
+                <version>${version.org.jboss.arquillian.drone}</version>
+                <type>pom</type>
+                <scope>test</scope>
             </dependency>
             <dependency>
                 <groupId>junit</groupId>
@@ -203,7 +198,6 @@
         <dependency>
             <groupId>org.jboss.arquillian.graphene</groupId>
             <artifactId>graphene-webdriver</artifactId>
-            <version>2.3.2</version>
             <type>pom</type>
             <scope>test</scope>
         </dependency>
@@ -219,22 +213,6 @@
             <groupId>org.hamcrest</groupId>
             <artifactId>hamcrest</artifactId>
         </dependency>
-        <!--         <dependency>
-        <groupId>org.awaitility</groupId>
-        <artifactId>awaitility</artifactId>
-    </dependency>
-    <dependency>
-        <groupId>org.skyscreamer</groupId>
-        <artifactId>jsonassert</artifactId>
-    </dependency>
-<dependency>
-        <groupId>com.jayway.jsonpath</groupId>
-        <artifactId>json-path</artifactId>
-    </dependency>
-    <dependency>
-        <groupId>com.jayway.jsonpath</groupId>
-        <artifactId>json-path-assert</artifactId>
-    </dependency>     -->
     </dependencies>
     <build>
         <finalName>${project.artifactId}</finalName>
@@ -530,14 +508,6 @@
                 <skipTests>false</skipTests>
             </properties>
             <dependencies>
-
-                <!-- https://mvnrepository.com/artifact/fish.payara.arquillian/payara-client-ee8 -->
-                <dependency>
-                    <groupId>fish.payara.arquillian</groupId>
-                    <artifactId>payara-client-ee8</artifactId>
-                    <version>${arquillian-payara-server.version}</version>
-                    <scope>test</scope>
-                </dependency>
 
                 <!-- Payara Server Container adaptor  -->
                 <dependency>

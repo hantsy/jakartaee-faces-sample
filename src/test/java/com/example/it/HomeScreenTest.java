@@ -4,14 +4,13 @@ import com.example.Bootstrap;
 import com.example.config.FacesConfigurationBean;
 import com.example.domain.Task;
 import com.example.web.TaskHome;
-import java.io.File;
 import java.net.URL;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.jboss.arquillian.container.test.api.Deployment;
-import org.jboss.arquillian.container.test.api.RunAsClient;
 import org.jboss.arquillian.drone.api.annotation.Drone;
 import org.jboss.arquillian.graphene.page.InitialPage;
+import org.jboss.arquillian.graphene.page.Page;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.arquillian.test.api.ArquillianResource;
 import org.jboss.shrinkwrap.api.Filters;
@@ -20,7 +19,6 @@ import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.asset.EmptyAsset;
 import org.jboss.shrinkwrap.api.importer.ExplodedImporter;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
-import org.jboss.shrinkwrap.resolver.api.maven.Maven;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.openqa.selenium.WebDriver;
@@ -38,14 +36,7 @@ public class HomeScreenTest {
 
     @Deployment(testable = false)
     public static WebArchive createDeployment() {
-//        File[] extraJars = Maven.resolver().loadPomFromFile("pom.xml")
-//                .resolve(
-//                        "org.eclipse.krazo:krazo-jersey:1.0.0"
-//                )
-//                .withTransitivity()
-//                .asFile();
         WebArchive war = ShrinkWrap.create(WebArchive.class)
-//                .addAsLibraries(extraJars)
                 .addPackage(Bootstrap.class.getPackage())
                 .addPackage(Task.class.getPackage())
                 .addPackage(FacesConfigurationBean.class.getPackage())
@@ -68,11 +59,17 @@ public class HomeScreenTest {
     @ArquillianResource
     private URL deploymentUrl;
 
+    @Drone
+    private WebDriver browser;
+
+//    @Page
+//    HomePage home;
+
     @Test
-    @RunAsClient
     public void testHomePage(@InitialPage HomePage home) {
         final String url = deploymentUrl.toExternalForm();
         LOGGER.log(Level.INFO, "deploymentUrl{0}", url);
+        this.browser.get(url+"/tasks.xhtml");
         home.assertTodoTasksSize(2);
     }
 }
