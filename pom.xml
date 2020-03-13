@@ -485,22 +485,6 @@
                     <scope>test</scope>
                 </dependency>
             </dependencies>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-failsafe-plugin</artifactId>
-                        <version>${maven-failsafe-plugin.version}</version>
-                        <configuration>
-                            <!-- This needs tuning
-                            <systemPropertyVariables>
-                                <arquillian.launch>glassfish</arquillian.launch>
-                            </systemPropertyVariables> -->
-                        </configuration>
-                    </plugin>
-                </plugins>
-            </build>
-
         </profile>
         <profile>
             <id>arq-payara-managed</id>
@@ -553,10 +537,6 @@
                             <environmentVariables>
                                 <GLASSFISH_HOME>${project.build.directory}/payara5</GLASSFISH_HOME>
                             </environmentVariables>
-                            <!-- This needs tuning 
-                            <systemPropertyVariables>
-                                <arquillian.launch>glassfish</arquillian.launch>
-                            </systemPropertyVariables>-->
                         </configuration>
                     </plugin>
                 </plugins>
@@ -575,15 +555,6 @@
                     <scope>test</scope>
                 </dependency>
             </dependencies>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-failsafe-plugin</artifactId>
-                        <version>${maven-failsafe-plugin.version}</version>
-                    </plugin>
-                </plugins>
-            </build>
         </profile>
     </profiles>
     <reporting>
