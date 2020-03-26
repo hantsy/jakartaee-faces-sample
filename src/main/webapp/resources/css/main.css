@@ -23,3 +23,7 @@ footer {
     padding-right: 15px;
     padding-left: 15px;
 }
+
+h1.page-header{
+    margin: 20px 5px;
+}

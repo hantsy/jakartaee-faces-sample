@@ -33,11 +33,11 @@
             <main role="main" class="flex-shrink-0">
                 <div class="container">
                     <ui:include src="/WEB-INF/layout/alert.xhtml"/>
-                    <h:panelGroup layout="block" styleClass="page-header">
-                        <h1>
-                            <ui:insert name="pageTitle"></ui:insert>
-                        </h1>
-                    </h:panelGroup>
+
+                    <h1 class="page-header display-3">
+                        <ui:insert name="pageTitle"></ui:insert>
+                    </h1>
+
                     <ui:insert name="content"/>
                 </div>
             </main>
