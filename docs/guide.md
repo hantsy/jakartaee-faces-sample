@@ -8,7 +8,7 @@ I assume you have read  my former posts for [Jakarta EE starter](https://github.
 * [Testing Jakarta EE 8 Applications](https://medium.com/swlh/testing-jakarta-ee-8-applications-9ca250da20e3)
 * [Put your Jakarta EE 8 applications to production](https://medium.com/@hantsy/put-your-jakarta-ee-8-applications-to-production-77756d1967bf)
 
-In this application, we use a  real database database to store the data, use JPA to persist data, use EJB to handle business, and use JSF to present the Web UI pages. 
+In this application, we use a  real database database to store data instead of dummy codes in [Jakarta EE starter](https://github.com/hantsy/jakartaee8-starter) , JPA is used to persist data, EJB is responsible for handling transaction, and JSF is selected to present the Web UI pages. 
 
 Firstly let's setup Jakarta Persistence.
 
@@ -177,8 +177,6 @@ Add the following dependency in *pom.xml*.
 
 And do not forget to enable APT in your IDEs. It will generate the Entity metadata classes automatically.
 
-Next, let's move to the UI parts.
-
 ## Initializing Sample Data
 
 EJB provides a `Singlton` bean which can be used for initializing sample data as expected.
@@ -215,7 +213,7 @@ public class Bootstrap {
 
 The above `Bootstrap` bean is marked as `@Startup`, which means this bean will be initialized as soon as possible when EJB container is ready.  And `@Startup` must be used with EJB `@Singletone`.
 
-Firstly, let's enable JSF 2.3 in your Jakarta EE 8 applications.
+Next, let's move to the UI work. Firstly, let's enable JSF 2.3 in your Jakarta EE 8 applications.
 
 ## Enabling JSF 2.3
 
@@ -235,7 +233,7 @@ public class FacesConfigurationBean {
 
 In the home page of the application, it displays tasks by status groups, including TODO, DOING, DONE.  
 
-When JSF is enabled, by default it uses Facelets template engine to render Web UI.
+When JSF is enabled, it supports Facelets template engine to render Web UI.
 
 ## Facelets layout and templates
 
@@ -308,13 +306,13 @@ In the *src/main/webapp/WEB-INF/views*, create a  *template.xhtml*.
 
 In above codes,
 
-* We use [Bootstrap](https://getbootstrap.com/) and [Font Awesome](https://fontawesome.com/) CSS frameworks to beautify our pages.
+* We use [Bootstrap](https://getbootstrap.com/) and [Font Awesome](https://fontawesome.com/) to beautify the pages.
 
-* Use `ui:include` to includes predefined facelets `composition` fragments. 
+* We use `ui:include` to include the predefined facelets `composition` view. 
 
-* There are some `ui:insert` tags  defined where live some room to the certain facelets templates to specify the content.
+* There are some `ui:insert` tags where live some room to the certain facelets templates to specify the content.
 
-Facelets follow the `Composition` pattern, it is easy to replace the specified content with Facelets composition.
+Facelets follow the `Composition` pattern, it is easy to replace the specified content with Facelets composition view.
 
 Check the file contents of *header.xhtml*, *footer.xhtml* and *alert.xhtml* yourself from the [source codes](https://github.com/hantsy/jakartaee-faces-sample). 
 
@@ -457,17 +455,17 @@ Let's have a look at the home page which displays the tasks in different status 
 
 In the above codes, 
 
-* The root element `ui:composition` specifies `template` attribute to use `/WEB-INF/layout/template.xhtml` as template.
-* A series of `ui:define` content fragment will replace the `ui:insert` in the template.xhtml at rendering time.
+* The root element `ui:composition` specifies `template` attribute to use `/WEB-INF/layout/template.xhtml` as template layout.
+* A series of `ui:define` content fragment will replace the `ui:insert` in the *template.xhtml* at rendering time.
 
-> More details about the Facelet taglibs, check the [Jakarta Server Faces 2.3.2 VDL Documentation](https://jakarta.ee/specifications/faces/2.3/vdldoc/) .
+> More details about the Facelets taglibs, check the [Jakarta Server Faces 2.3.2 VDL Documentation](https://jakarta.ee/specifications/faces/2.3/vdldoc/) .
 
 
 ## Baking the backend bean
 
 
 
-To display the task, it requires a backend bean to serve the data for `tasks.xhtml` template.
+To display the tasks, it requires a backend bean to serve the data for `tasks.xhtml` template.
 
 Create a CDI bean.
 
@@ -582,7 +580,7 @@ In the above codes,
 
 * The bean is annotated with `@Named`, thus in the template file, the bean can be accessed via Expressing Language.
 
-* In JSF 2.3, a lot of JSF components can be injected by `@Inject`, such as `FacesContext`, `@ExternalContext` etc.
+* In JSF 2.3, a lot of JSF built-in components are exposed as CDI beans, that means they can be injected by the `@Inject` annotation, such as `FacesContext`, `ExternalContext` etc.
 
 * In the `tasks.xhtml`, there is a `viewAction` metadata set to call `TaskHome.init` method to initialize the data in the page in JSF **invoke application** phase. 
 
@@ -590,7 +588,7 @@ In the above codes,
 
 ## Add a task
 
-Create a Facelets template to render a form to add or edit a task.
+Create a Facelets template file to render a form to add or edit a task.
 
 ```xml
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
@@ -662,9 +660,9 @@ Create a Facelets template to render a form to add or edit a task.
 In above codes,
 
 * In the metadata,try to initialize the data if there is a `taskId` parameter is provided.
-* We use HTML 5 compatible forms for input and textarea components,which is friendly for the existing visual web development tools.
+* We use HTML 5 compatible forms for `input` and `textarea` components, which are friendly for the existing visual web development tools.
 
-The following the backend bean.
+The following is the backend bean.
 
 ```java
 @Named("editTaskAction")
@@ -734,8 +732,6 @@ public class EditTaskAction implements Serializable {
 
 ```
 
-
-
 There are a few projects provide mature JSF components which can speed up your development.
 
 * [PrimeFaces](https://www.primefaces.org/)
@@ -743,7 +739,7 @@ There are a few projects provide mature JSF components which can speed up your d
 * [ButterFaces](http://www.butterfaces.org/), another JSF components project based on Bootstrap 4 and JQuery
 * [OmniFaces](http://showcase.omnifaces.org/), a swiss-knife like JSF utility lib.
 
-Get the [complete codes](https://github.com/hantsy/jakartaee-faces-sample) from my Github.
+Some other files we did not motioned here, please check the [complete codes](https://github.com/hantsy/jakartaee-faces-sample) from my Github.
 
 ## Running the Application
 
@@ -882,7 +878,49 @@ Add the dependencies in `dependencies`.
 </dependency>
 ```
 
-Create a PageObject for the home page.
+Configure the Webdriver used to run the tests.
+
+Create a property in *pom.xml*.
+
+```xml
+<!-- PhantomJS will be our default browser if no profile is specified-->
+<browser>phantomjs</browser> 
+```
+
+Set browser to use *phantomjs* by default.
+
+In the *src/test/resources/arqullian.xml* file, add a qualifier *webdriver* to apply the settings of browser property.
+
+```xml
+<extension qualifier="webdriver">
+    <property name="browser">${browser}</property>
+</extension>
+```
+
+Add some profiles to override the browser value to switch to other webdriver.
+
+```xml
+<profile>
+    <id>firefox</id>
+    <properties>
+        <browser>firefox</browser>
+    </properties>
+</profile>
+<profile>
+    <id>chrome</id>
+    <properties>
+        <browser>chrome</browser>
+    </properties>
+</profile>
+<profile>
+    <id>chromeheadless</id>
+    <properties>
+        <browser>chromeheadless</browser>
+    </properties>
+</profile>
+```
+
+Create a *Page Object* for the home page.
 
 ```java
 @Location("tasks.xhtml")
