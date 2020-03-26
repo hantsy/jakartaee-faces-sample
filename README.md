@@ -4,6 +4,8 @@ A Jakarta Server Faces sample application based on the [jakartaee8-starter](http
 
 
 
+![home](./home.png)
+
 ## Documentation
 
 [Building a Jatarka Server Faces application](/docs/guide.md)
