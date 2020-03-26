@@ -8,7 +8,9 @@ I assume you have read  my former posts for [Jakarta EE starter](https://github.
 * [Testing Jakarta EE 8 Applications](https://medium.com/swlh/testing-jakarta-ee-8-applications-9ca250da20e3)
 * [Put your Jakarta EE 8 applications to production](https://medium.com/@hantsy/put-your-jakarta-ee-8-applications-to-production-77756d1967bf)
 
-In this application, we use a database to store the data from Web pages. Firstly let's setup Jakarta Persistence.
+In this application, we use a  real database database to store the data, use JPA to persist data, use EJB to handle business, and use JSF to present the Web UI pages. 
+
+Firstly let's setup Jakarta Persistence.
 
 ## Setup Jakarta Persistence
 
@@ -160,7 +162,58 @@ In the above codes,
 * A `EntityManager` can be injected by `PersistenceContext`. 
 * In the `findByStatus` method, it uses JPA Criteria API  to perform type-safe queries instead of literal queries.
 
+The entity metadata classes generation is dependent on the background Persistence provider, Hibernate and EclipseLinks provide APT tooling to generate them at compile time.
+
+Add the following dependency in *pom.xml*.
+
+```xml
+<dependency>
+    <groupId>org.eclipse.persistence</groupId>
+    <artifactId>org.eclipse.persistence.jpa.modelgen.processor</artifactId>
+    <version>${eclipselink.version}</version>
+    <scope>provided</scope>
+</dependency>
+```
+
+And do not forget to enable APT in your IDEs. It will generate the Entity metadata classes automatically.
+
 Next, let's move to the UI parts.
+
+## Initializing Sample Data
+
+EJB provides a `Singlton` bean which can be used for initializing sample data as expected.
+
+```java
+@Startup
+@Singleton
+public class Bootstrap {
+
+    @Inject
+    Logger LOG;
+
+    @Inject
+    TaskRepository taskRepository;
+
+    @PostConstruct
+    public void init() {
+        LOG.log(Level.INFO, "bootstraping application...");
+
+        Stream.of("first", "second")
+                .map(s -> {
+                    Task task = new Task();
+                    task.setName("My " + s + " task");
+                    task.setDescription("The description of my " + s + " task");
+                    task.setStatus(Task.Status.TODO);
+                    return task;
+                })
+                .map(data -> taskRepository.save(data))
+                .collect(Collectors.toList())
+                .forEach(task -> LOG.log(Level.INFO, " task saved: {0}", new Object[]{task}));
+    }
+}
+```
+
+The above `Bootstrap` bean is marked as `@Startup`, which means this bean will be initialized as soon as possible when EJB container is ready.  And `@Startup` must be used with EJB `@Singletone`.
 
 Firstly, let's enable JSF 2.3 in your Jakarta EE 8 applications.
 
@@ -689,6 +742,76 @@ There are a few projects provide mature JSF components which can speed up your d
 * [BootFaces](https://www.bootsfaces.net/), JSF components based on Bootstrap
 * [ButterFaces](http://www.butterfaces.org/), another JSF components project based on Bootstrap 4 and JQuery
 * [OmniFaces](http://showcase.omnifaces.org/), a swiss-knife like JSF utility lib.
+
+Get the [complete codes](https://github.com/hantsy/jakartaee-faces-sample) from my Github.
+
+## Running the Application
+
+You can simply run the application in your IDE, or from Maven command line. More details check the [docs](https://github.com/hantsy/jakartaee8-starter/blob/master/docs/README.md) of [Jakarta EE 8 starter](https://github.com/hantsy/jakartaee8-starter/).
+
+There is an exception, when using Open Liberty, you have to prepare the DataSource yourself in the server.xml configuration file. 
+
+Define the Jdbc lib and a default DataSource in *src/main/liberty/config/server.xml*.
+
+```xml
+	<!-- Derby Library Configuration -->    
+	<library id="derbyJDBCLib">
+	  <fileset dir="${shared.resource.dir}" includes="derby*.jar"/>
+	</library>
+
+	<!-- Datasource Configuration -->
+    <!-- remove jndiName="" to serve java:comp/DefaultDataSource for Java EE 7 or above -->
+	<dataSource id="DefaultDataSource">
+	  <jdbcDriver libraryRef="derbyJDBCLib" />
+	  <properties.derby.embedded databaseName="taskdb" createDatabase="create"/>
+	</dataSource>
+</server>
+```
+
+And prepare jdbc lib related resource by `maven-dependency-plugin`.
+
+```xml
+<plugin>
+    <groupId>org.apache.maven.plugins</groupId>
+    <artifactId>maven-dependency-plugin</artifactId>
+    <version>${maven-dependency-plugin.version}</version>
+    <executions>
+        <execution>
+            <id>copy</id>
+            <phase>package</phase>
+            <goals>
+                <goal>copy</goal>
+            </goals>   
+        </execution>
+    </executions>                     
+    <configuration>
+        <artifactItems>
+            <artifactItem>
+                <groupId>org.apache.derby</groupId>
+                <artifactId>derby</artifactId>
+                <version>${derby.version}</version>
+                <type>jar</type>
+                <overWrite>false</overWrite>
+            </artifactItem>
+        </artifactItems>
+        <outputDirectory>${project.build.directory}/liberty/wlp/usr/shared/resources</outputDirectory>
+    </configuration>                                    
+</plugin>             
+<!-- Enable liberty-maven-plugin -->
+<plugin>
+    <groupId>io.openliberty.tools</groupId>
+    <artifactId>liberty-maven-plugin</artifactId>
+    <version>${liberty-maven-plugin.version}</version>
+</plugin>
+```
+
+Execute the following command when deploying to Open Liberty.
+
+```bash
+mvn liberty:create dependency:copy liberty:start
+```
+
+
 
 ## Bonus: Testing 
 
