@@ -1,14 +1,14 @@
 # Building a Jakarta Server Faces application
 
-I have created a [Jakarta EE starter](https://github.com/hantsy/jakartaee8-starter) to help you to start a simple Jakarta EE 8 application in seconds. In this post, I will reuse the codebase of  [Jakarta EE starter](https://github.com/hantsy/jakartaee8-starter), and create a simple Kanban board like web application with JSF , EJB,  CDI, JPA. etc.
+I have created a [Jakarta EE 8 starter](https://github.com/hantsy/jakartaee8-starter) to help you to start a simple Jakarta EE 8 application in seconds. In this post, I will reuse the codebase of  [Jakarta EE starter](https://github.com/hantsy/jakartaee8-starter), and create a simple Kanban board like web application with JSF , EJB,  CDI, JPA. etc.
 
-I assume you have read  my former posts for [Jakarta EE starter](https://github.com/hantsy/jakartaee8-starter).
+I assume you have read  my former posts for [Jakarta EE 8 starter](https://github.com/hantsy/jakartaee8-starter).
 
 * [Kickstart a Jakarta EE 8 Application](https://medium.com/@hantsy/kickstart-a-jakarta-ee-8-application-d1b6ff32213b)
 * [Testing Jakarta EE 8 Applications](https://medium.com/swlh/testing-jakarta-ee-8-applications-9ca250da20e3)
 * [Put your Jakarta EE 8 applications to production](https://medium.com/@hantsy/put-your-jakarta-ee-8-applications-to-production-77756d1967bf)
 
-In this application, we use a  real database database to store data instead of dummy codes in [Jakarta EE starter](https://github.com/hantsy/jakartaee8-starter) , JPA is used to persist data, EJB is responsible for handling transaction, and JSF is selected to present the Web UI pages. 
+In this application, we use a  real database database to store data instead of dummy codes in [Jakarta EE 8 starter](https://github.com/hantsy/jakartaee8-starter) , JPA is used to persist data, EJB is responsible for handling transaction, and JSF is selected to present the Web UI pages. 
 
 Firstly let's setup Jakarta Persistence.
 
@@ -89,11 +89,11 @@ In the above code,
 
 * A JPA Entity must be annotated with a `@Entity` annotation.
 * It should includes an identity field annotated with `@Id` (or `@IdClass`).
-* The entity class has a default constructor.
+* The entity class should has a default none-arguments constructor.
 
 Next, we will use EJB  `@Stateless` bean to perform CRUD operations.
 
-## Create a TaskRepository Stateless bean
+## Create a TaskRepository bean
 
 Create a class named `TaskRepository` and annotated it with `@Stateless` like following.
 
@@ -158,8 +158,8 @@ public class TaskRepository {
 
 In the above codes, 
 
-* `@Stateless` means it is a EJB stateless bean, and it gets Transaction support by default.
-* A `EntityManager` can be injected by `PersistenceContext`. 
+* `@Stateless` means it is a EJB stateless bean, and it gets Transaction support automaticially.
+* A `EntityManager` can be injected by `@PersistenceContext`. 
 * In the `findByStatus` method, it uses JPA Criteria API  to perform type-safe queries instead of literal queries.
 
 The entity metadata classes generation is dependent on the background Persistence provider, Hibernate and EclipseLinks provide APT tooling to generate them at compile time.
@@ -175,7 +175,9 @@ Add the following dependency in *pom.xml*.
 </dependency>
 ```
 
-And do not forget to enable APT in your IDEs. It will generate the Entity metadata classes automatically.
+When compiling the source codes by Maven command line, it will be picked up by maven-compiler-plugin and generate the metadata classes for you.
+
+For most of IDEs, such as Eclipse and IDEA, you should enable APT  manually in the settings of IDEs. Then it will generate the entity metadata classes automatically.
 
 ## Initializing Sample Data
 
@@ -1024,7 +1026,7 @@ In the test, you can inject the Page class by `@Page`, if the page class is anno
 
 In this sample, we just checked the task items count in the home pages.
 
-> For those new to Arquillian Drone and Arquillian Graphene2, please read [the official step-by-step guide](http://arquillian.org/guides/functional_testing_using_graphene/).
+> For those new to Arquillian Drone and Arquillian Graphene2, please read [the official step-by-step guide](http://arquillian.org/guides/functional_testing_using_graphene/) from JBoss Arquillian website.
 
 Get the [complete codes](https://github.com/hantsy/jakartaee-faces-sample) from my Github.
 
