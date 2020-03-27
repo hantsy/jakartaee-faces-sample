@@ -919,38 +919,7 @@ Add some profiles to override the browser value to switch to other webdriver.
     </properties>
 </profile>
 ```
-
-Create a *Page Object* for the home page.
-
-```java
-@Location("tasks.xhtml")
-public class HomePage {
-
-    @FindBy(id = "todotasks")
-    private WebElement todotasks;
-
-    @FindBy(id = "doingtasks")
-    private WebElement doingtasks;
-
-    @FindBy(id = "donetasks")
-    private WebElement donetasks;
-
-    public void assertTodoTasksSize(int size) {
-        assertTrue(todotasks.findElements(By.cssSelector("li.list-group-item")).size() == size);
-    }
-
-    public void assertDoingTasksSize(int size) {
-        assertTrue(doingtasks.findElements(By.cssSelector("li.list-group-item")).size() == size);
-    }
-
-    public void assertDoneTasksSize(int size) {
-        assertTrue(donetasks.findElements(By.cssSelector("li.list-group-item")).size() == size);
-    }    
-    
-}
-```
-
-Create a test case for the home page.
+Create a test using Arquillian Drone.
 
 ```java
 @RunWith(Arquillian.class)
@@ -987,21 +956,75 @@ public class HomeScreenTest {
 
     @Drone
     private WebDriver browser;
+   
+    @FindBy(id = "todotasks")
+    private WebElement todotasks;
+
+    @FindBy(id = "doingtasks")
+    private WebElement doingtasks;
+
+    @FindBy(id = "donetasks")
+    private WebElement donetasks;
 
     @Test
-    public void testHomePage(@InitialPage HomePage home) {
+    public void testHomePage() {
         final String url = deploymentUrl.toExternalForm();
-        LOGGER.log(Level.INFO, "deploymentUrl{0}", url);
-        this.browser.get(url+"/tasks.xhtml");
-        home.assertTodoTasksSize(2);
+        LOGGER.log(Level.INFO, "deploymentUrl:{0}", url);
+        this.browser.get(url + "/tasks.xhtml");
+        assertTrue(todotasks.findElements(By.cssSelector("li.list-group-item")).size() == 2);
+        assertTrue(doingtasks.findElements(By.cssSelector("li.list-group-item")).isEmpty());
+        assertTrue(donetasks.findElements(By.cssSelector("li.list-group-item")).isEmpty());
     }
 }
+```
+In the above codes,
+* Use `@Drone` to initialize a WebDriver.
+* `@FindBy` is used to locate the WebElement.
+*  Use `this.browser.get` to navigate a page.
 
+Extract the web elements into a class using the  *Page Object* pattern.
+
+```java
+@Location("tasks.xhtml")
+public class HomePage {
+
+    @FindBy(id = "todotasks")
+    private WebElement todotasks;
+
+    @FindBy(id = "doingtasks")
+    private WebElement doingtasks;
+
+    @FindBy(id = "donetasks")
+    private WebElement donetasks;
+
+    public void assertTodoTasksSize(int size) {
+        assertTrue(todotasks.findElements(By.cssSelector("li.list-group-item")).size() == size);
+    }
+
+    public void assertDoingTasksSize(int size) {
+        assertTrue(doingtasks.findElements(By.cssSelector("li.list-group-item")).size() == size);
+    }
+
+    public void assertDoneTasksSize(int size) {
+        assertTrue(donetasks.findElements(By.cssSelector("li.list-group-item")).size() == size);
+    }    
+    
+}
 ```
 
-In this sample, I just check the task items count in the home pages.
+Create a test case for the home page.
 
-> For those new to Arquillian Drone and Arquillian Graphene2, please check [the official step-by-step guide](http://arquillian.org/guides/functional_testing_using_graphene/).
+```java
+ @Test
+ public void testHomePageObject(@InitialPage HomePage home) {
+ home.assertTodoTasksSize(2);
+ }
+```
+In the test, you can inject the Page class by `@Page`, if the page class is annotated with `@Location`, it can be  initialized by using a `@InitialPage` annotation..
+
+In this sample, we just checked the task items count in the home pages.
+
+> For those new to Arquillian Drone and Arquillian Graphene2, please read [the official step-by-step guide](http://arquillian.org/guides/functional_testing_using_graphene/).
 
 Get the [complete codes](https://github.com/hantsy/jakartaee-faces-sample) from my Github.
 
