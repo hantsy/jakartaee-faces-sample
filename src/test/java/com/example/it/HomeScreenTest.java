@@ -102,7 +102,4 @@ public class HomeScreenTest {
         home.assertTodoTasksSize(2);
     }
 
-    private Object guardHttp(WebElement buttonElement) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 }
