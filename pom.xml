@@ -42,7 +42,7 @@
         <arquillian-payara-server.version>2.3.1</arquillian-payara-server.version>
 
         <!-- Wildfly server-->
-        <wildfly.version>19.0.0.Beta1</wildfly.version>
+        <wildfly.version>21.0.1.Final</wildfly.version>
         <wildfly-maven-plugin.version>2.1.0.Beta1</wildfly-maven-plugin.version>
         <wildfly-arquillian.version>2.2.0.Final</wildfly-arquillian.version>
         <!--  websockets-jsr and resteasy for client, aligned with Wildfly version. -->
