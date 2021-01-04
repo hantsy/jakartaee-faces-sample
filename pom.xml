@@ -20,7 +20,7 @@
         
         <!-- Maven Plugins -->
         <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
-        <cargo-maven2-plugin.version>1.8.3</cargo-maven2-plugin.version>
+        <cargo-maven2-plugin.version>1.8.4</cargo-maven2-plugin.version>
         <maven-dependency-plugin.version>3.1.2</maven-dependency-plugin.version>
         <maven-surefire-plugin.version>3.0.0-M5</maven-surefire-plugin.version>
         <maven-failsafe-plugin.version>3.0.0-M5</maven-failsafe-plugin.version>
