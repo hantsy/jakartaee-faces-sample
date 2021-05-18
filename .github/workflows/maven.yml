@@ -31,7 +31,7 @@ jobs:
    #   run: mvn clean verify -Parq-payara-embedded,chromeheadless
 
     - name: Run integration test with -Parq-payara-embedded
-      run:  mvn -B -q mvn clean verify -Parq-payara-embedded
+      run:  mvn -B -q clean verify -Parq-payara-embedded
   automerge:
     name: Merge pull request
     runs-on: ubuntu-latest
