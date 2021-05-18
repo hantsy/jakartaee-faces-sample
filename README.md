@@ -1,8 +1,9 @@
 #  Jakarta EE Server Faces Sample
 
+
+![Compile and build](https://github.com/hantsy/jakartaee-faces-sample/workflows/build/badge.svg)
+
 A Jakarta Server Faces sample application based on the [jakartaee8-starter](https://github.com/hantsy/jakartaee8-starter) boilerplate.
-
-
 
 ![home](./home.png)
 
