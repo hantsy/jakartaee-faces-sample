@@ -39,7 +39,7 @@
 
         <!-- Payara server -->
         <payara.version>5.2021.3</payara.version>
-        <arquillian-payara-server.version>2.3.1</arquillian-payara-server.version>
+        <arquillian-payara-server.version>2.4.2</arquillian-payara-server.version>
 
         <!-- Wildfly server-->
         <wildfly.version>21.0.1.Final</wildfly.version>
