@@ -39,7 +39,7 @@
 
         <!-- Payara server -->
         <payara.version>5.2021.3</payara.version>
-        <arquillian-payara-server.version>2.4.2</arquillian-payara-server.version>
+        <arquillian-payara.version>2.4.2</arquillian-payara.version>
 
         <!-- Wildfly server-->
         <wildfly.version>21.0.1.Final</wildfly.version>
@@ -481,7 +481,7 @@
                 <dependency>
                     <groupId>fish.payara.arquillian</groupId>
                     <artifactId>arquillian-payara-server-embedded</artifactId>
-                    <version>${arquillian-payara-server.version}</version>
+                    <version>${arquillian-payara.version}</version>
                     <scope>test</scope>
                 </dependency>
             </dependencies>
@@ -493,11 +493,20 @@
             </properties>
             <dependencies>
 
+                <!-- https://mvnrepository.com/artifact/fish.payara.arquillian/payara-client-ee8 -->
+                <!-- this is required since 2.4 -->
+                <dependency>
+                    <groupId>fish.payara.arquillian</groupId>
+                    <artifactId>payara-client-ee8</artifactId>
+                    <version>${arquillian-payara.version}</version>
+                    <scope>test</scope>
+                </dependency>
+                     
                 <!-- Payara Server Container adaptor  -->
                 <dependency>
                     <groupId>fish.payara.arquillian</groupId>
                     <artifactId>arquillian-payara-server-managed</artifactId>
-                    <version>${arquillian-payara-server.version}</version>
+                    <version>${arquillian-payara.version}</version>
                     <scope>test</scope>
                 </dependency>
             </dependencies>
@@ -534,9 +543,9 @@
                         <artifactId>maven-failsafe-plugin</artifactId>
                         <version>${maven-failsafe-plugin.version}</version>
                         <configuration>
-                            <environmentVariables>
-                                <GLASSFISH_HOME>${project.build.directory}/payara5</GLASSFISH_HOME>
-                            </environmentVariables>
+                            <systemPropertyVariables>
+                                <payara.home>${project.build.directory}/payara5</payara.home>
+                            </systemPropertyVariables>
                         </configuration>
                     </plugin>
                 </plugins>
