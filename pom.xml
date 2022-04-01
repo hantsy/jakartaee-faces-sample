@@ -21,7 +21,7 @@
         <!-- Maven Plugins -->
         <maven-compiler-plugin.version>3.10.0</maven-compiler-plugin.version>
         <cargo-maven2-plugin.version>1.8.5</cargo-maven2-plugin.version>
-        <maven-dependency-plugin.version>3.2.0</maven-dependency-plugin.version>
+        <maven-dependency-plugin.version>3.3.0</maven-dependency-plugin.version>
         <maven-surefire-plugin.version>3.0.0-M5</maven-surefire-plugin.version>
         <maven-failsafe-plugin.version>3.0.0-M5</maven-failsafe-plugin.version>
         <maven-surefire-report-plugin.version>3.0.0-M5</maven-surefire-report-plugin.version>
