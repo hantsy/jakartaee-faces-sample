@@ -38,7 +38,7 @@
         <eclipselink.version>2.7.7</eclipselink.version>
 
         <!-- Payara server -->
-        <payara.version>5.2022.2</payara.version>
+        <payara.version>5.2022.3</payara.version>
         <arquillian-payara.version>2.4.6</arquillian-payara.version>
 
         <!-- Wildfly server-->
