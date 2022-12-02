@@ -4,16 +4,11 @@ import com.example.Bootstrap;
 import com.example.config.FacesConfigurationBean;
 import com.example.domain.Task;
 import com.example.web.TaskHome;
-import java.net.URL;
-import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.drone.api.annotation.Drone;
 import org.jboss.arquillian.graphene.Graphene;
-import static org.jboss.arquillian.graphene.Graphene.guardHttp;
 import org.jboss.arquillian.graphene.page.InitialPage;
-import org.jboss.arquillian.junit.Arquillian;
+import org.jboss.arquillian.junit5.ArquillianExtension;
 import org.jboss.arquillian.test.api.ArquillianResource;
 import org.jboss.shrinkwrap.api.Filters;
 import org.jboss.shrinkwrap.api.GenericArchive;
@@ -21,19 +16,26 @@ import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.asset.EmptyAsset;
 import org.jboss.shrinkwrap.api.importer.ExplodedImporter;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
-import static org.junit.Assert.assertTrue;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+import java.net.URL;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+
 /**
- *
  * @author hantsy
  */
-@RunWith(Arquillian.class)
+@ExtendWith(ArquillianExtension.class)
 public class HomeScreenTest {
 
     private static final Logger LOGGER = Logger.getLogger(HomeScreenTest.class.getName());
@@ -54,7 +56,7 @@ public class HomeScreenTest {
                 .addAsWebInfResource(EmptyAsset.INSTANCE, "beans.xml")
                 // add template resources.
                 .merge(ShrinkWrap.create(GenericArchive.class).as(ExplodedImporter.class)
-                        .importDirectory(WEBAPP_SRC).as(GenericArchive.class),
+                                .importDirectory(WEBAPP_SRC).as(GenericArchive.class),
                         "/", Filters.include(".*\\.(xhtml|css|xml)$")
                 );
 
@@ -82,18 +84,18 @@ public class HomeScreenTest {
         final String url = deploymentUrl.toExternalForm();
         LOGGER.log(Level.INFO, "deploymentUrl:{0}", url);
         this.browser.get(url + "/tasks.xhtml");
-        assertTrue(todotasks.findElements(By.cssSelector("li.list-group-item")).size() == 2);
+        assertEquals(2, todotasks.findElements(By.cssSelector("li.list-group-item")).size());
         assertTrue(doingtasks.findElements(By.cssSelector("li.list-group-item")).isEmpty());
         assertTrue(donetasks.findElements(By.cssSelector("li.list-group-item")).isEmpty());
         List<WebElement> todoTasksWebElements = todotasks.findElements(By.cssSelector("li.list-group-item"));
         if (!todoTasksWebElements.isEmpty()) {
             WebElement buttonElement = todoTasksWebElements.get(0).findElement(By.cssSelector("a.btn"));
             Graphene.guardHttp(buttonElement).click();
-            
+
             Graphene.waitGui();
 
-            assertTrue(todotasks.findElements(By.cssSelector("li.list-group-item")).size() == 1);
-            assertTrue(doingtasks.findElements(By.cssSelector("li.list-group-item")).size() == 1);
+            assertEquals(1, todotasks.findElements(By.cssSelector("li.list-group-item")).size());
+            assertEquals(1, doingtasks.findElements(By.cssSelector("li.list-group-item")).size());
         }
     }
 

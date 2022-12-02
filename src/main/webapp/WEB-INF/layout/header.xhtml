@@ -1,23 +1,25 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
-                xmlns:jsf="http://xmlns.jcp.org/jsf"
-                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-                xmlns:f="http://xmlns.jcp.org/jsf/core"
-                xmlns:h="http://xmlns.jcp.org/jsf/html">
+                xmlns:ui="jakarta.faces.facelets"
+>
 
     <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark" role="navigation">
         <div class="container">
-            <a class="navbar-brand" href="#{request.contextPath}/tasks.xhtml"><span class="text-uppercase">TaskBoard</span></a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+            <a class="navbar-brand" href="#{request.contextPath}/tasks.xhtml"><span
+                    class="text-uppercase">TaskBoard</span></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
+                    aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
 
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item #{request.requestURI.contains('/tasks.xhtml')?'active':''}">
-                        <a class="nav-link text-uppercase" href="#{request.contextPath}/tasks.xhtml" >Home <span class="sr-only">(current)</span></a>
+                        <a class="nav-link text-uppercase" href="#{request.contextPath}/tasks.xhtml">Home <span
+                                class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item #{request.requestURI.contains('/form.xhtml')?'active':''}">
-                        <a class="nav-link text-uppercase" href="#{request.contextPath}/form.xhtml"><span class="fa fa-plus-circle" aria-hidden="true"></span> New Task</a>
+                        <a class="nav-link text-uppercase" href="#{request.contextPath}/form.xhtml"><span
+                                class="fa fa-plus-circle" aria-hidden="true"></span> New Task</a>
                     </li>
                 </ul>
             </div>

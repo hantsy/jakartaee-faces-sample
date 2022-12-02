@@ -2,11 +2,11 @@ package com.example.config;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.faces.event.PhaseEvent;
-import javax.faces.event.PhaseId;
-import javax.faces.event.PhaseListener;
+import jakarta.faces.event.PhaseEvent;
+import jakarta.faces.event.PhaseId;
+import jakarta.faces.event.PhaseListener;
 
-import javax.inject.Inject;
+import jakarta.inject.Inject;
 
 public class RequestLoggingPhaseListener implements PhaseListener {
 
