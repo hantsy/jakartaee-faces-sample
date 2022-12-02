@@ -1,12 +1,11 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
-                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-                xmlns:f="http://xmlns.jcp.org/jsf/core"
-                xmlns:h="http://xmlns.jcp.org/jsf/html"
-                xmlns:c="http://java.sun.com/jsp/jstl/core"
+                xmlns:ui="jakarta.faces.facelets"
+                xmlns:f="jakarta.faces.core"
+                xmlns:h="jakarta.faces.html"
                 template="/WEB-INF/layout/template.xhtml">
     <ui:define name="metadata">
         <f:metadata>
-            <f:viewAction action="#{taskHome.init()}" />
+            <f:viewAction action="#{taskHome.init()}"/>
         </f:metadata>
     </ui:define>
     <ui:define name="pageTitle"> TASK LIST</ui:define>
@@ -14,7 +13,7 @@
         <h:form>
             <div class="row">
                 <div class="col-md-4 col-xs-12">
-                    <div class="card" >
+                    <div class="card">
                         <!-- Default panel contents -->
                         <div class="card-header">
                             <span class="fa fa-list-alt" aria-hidden="true"></span>
@@ -31,7 +30,7 @@
                                 <ui:repeat var="task" value="#{taskHome.todotasks}">
                                     <li class="list-group-item">
                                         <h4>
-                                            <span>##{task.id} #{task.name}</span> 
+                                            <span>##{task.id} #{task.name}</span>
                                             <span class="pull-right">
                                                 <h:link outcome="/details.xhtml">
                                                     <f:param name="id" value="#{task.id}"></f:param>
@@ -47,7 +46,7 @@
                                         <p>
                                             <h:commandLink action="#{taskHome.markTaskDoing(task.id)}"
                                                            styleClass="btn btn-sm btn-success">
-                                                <span class="fa fa-play" aria-hidden="true"></span>START								
+                                                <span class="fa fa-play" aria-hidden="true"></span>START
                                             </h:commandLink>
                                         </p>
                                     </li>
@@ -70,7 +69,7 @@
                         </div>
 
                         <!-- List group -->
-                        <ui:fragment  rendered="#{not empty taskHome.doingtasks}">
+                        <ui:fragment rendered="#{not empty taskHome.doingtasks}">
                             <ul id="doingtasks" class="list-group">
                                 <ui:repeat var="task" value="#{taskHome.doingtasks}">
                                     <li class="list-group-item">

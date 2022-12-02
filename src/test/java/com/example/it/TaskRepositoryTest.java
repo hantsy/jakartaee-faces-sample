@@ -2,24 +2,24 @@ package com.example.it;
 
 import com.example.domain.Task;
 import com.example.domain.TaskRepository;
+import jakarta.inject.Inject;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
 import org.jboss.arquillian.container.test.api.Deployment;
-import org.jboss.arquillian.junit.Arquillian;
+import org.jboss.arquillian.junit5.ArquillianExtension;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 
-import javax.inject.Inject;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-@RunWith(Arquillian.class)
+@ExtendWith(ArquillianExtension.class)
 public class TaskRepositoryTest {
     private static final Logger LOGGER = Logger.getLogger(TaskRepositoryTest.class.getName());
 
@@ -44,12 +44,12 @@ public class TaskRepositoryTest {
 
     Task saved;
 
-    @Before
+    @BeforeEach
     public void setup() {
         saved = tasks.save(Task.of("test task", "desc of test task"));
     }
 
-    @After
+    @AfterEach
     public void teardown() {
 
     }
@@ -57,8 +57,7 @@ public class TaskRepositoryTest {
     @Test
     public void shouldCreated() {
         Task found = em.find(Task.class, saved.getId());
-
-        assertEquals("name is 'test task'", "test task", found.getName());
-        assertEquals("description is 'desc of test task'", "desc of test task", found.getDescription());
+        assertEquals("test task", found.getName());
+        assertEquals("desc of test task", found.getDescription());
     }
 }

@@ -7,10 +7,12 @@ package com.example.it;
 
 
 import org.jboss.arquillian.graphene.page.Location;
-import static org.junit.Assert.assertTrue;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
  *
@@ -29,15 +31,15 @@ public class HomePage {
     private WebElement donetasks;
 
     public void assertTodoTasksSize(int size) {
-        assertTrue(todotasks.findElements(By.cssSelector("li.list-group-item")).size() == size);
+        assertEquals(todotasks.findElements(By.cssSelector("li.list-group-item")).size(), size);
     }
 
     public void assertDoingTasksSize(int size) {
-        assertTrue(doingtasks.findElements(By.cssSelector("li.list-group-item")).size() == size);
+        assertEquals(doingtasks.findElements(By.cssSelector("li.list-group-item")).size(), size);
     }
 
     public void assertDoneTasksSize(int size) {
-        assertTrue(donetasks.findElements(By.cssSelector("li.list-group-item")).size() == size);
+        assertEquals(donetasks.findElements(By.cssSelector("li.list-group-item")).size(), size);
     }    
     
 }

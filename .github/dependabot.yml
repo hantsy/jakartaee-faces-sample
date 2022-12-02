@@ -10,13 +10,13 @@ updates:
     interval: monthly
   open-pull-requests-limit: 10
   # Overwrite any ignores created using `@dependabot ignore` commands
-  ignore:
-    # Ignore updates to packages that start 'aws'
-    # Wildcards match zero or more arbitrary characters
-    #- dependency-name: "aws*"
-    # Ignore some updates to the 'resteasy' package
-    - dependency-name: "resteasy"
-      # Ignore only new versions for 4.x
-      versions: ["3.x, 4.x"]
-    - dependency-name: "jakarta.jakartaee-api"
-          
+#  ignore:
+#    # Ignore updates to packages that start 'aws'
+#    # Wildcards match zero or more arbitrary characters
+#    #- dependency-name: "aws*"
+#    # Ignore some updates to the 'resteasy' package
+#    - dependency-name: "resteasy"
+#      # Ignore only new versions for 4.x
+#      versions: ["3.x, 4.x"]
+#    - dependency-name: "jakarta.jakartaee-api"
+#
