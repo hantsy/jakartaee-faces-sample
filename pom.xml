@@ -30,7 +30,7 @@
 
         <!-- Arquillian BOM -->
         <arquillian.version>1.7.0.Alpha13</arquillian.version>
-        <arquillian-drone.version>3.0.0-alpha.5</arquillian-drone.version>
+        <arquillian-drone.version>3.0.0-alpha.6</arquillian-drone.version>
         <arquillian-graphene.version>3.0.0-alpha.3</arquillian-graphene.version>
         <arquillian-selenium.version>2.53.0</arquillian-selenium.version>
         <htmlunit.version>2.67.0</htmlunit.version>
