@@ -33,7 +33,7 @@
         <arquillian-drone.version>3.0.0-alpha.5</arquillian-drone.version>
         <arquillian-graphene.version>3.0.0-alpha.3</arquillian-graphene.version>
         <arquillian-selenium.version>2.53.0</arquillian-selenium.version>
-        <htmlunit.version>2.67.0</htmlunit.version>
+        <htmlunit.version>2.68.0</htmlunit.version>
 
         <!-- Glassfish server -->
         <glassfish.version>7.0.0-M10</glassfish.version>
