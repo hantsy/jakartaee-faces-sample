@@ -36,6 +36,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
  * @author hantsy
  */
 @ExtendWith(ArquillianExtension.class)
+@ExtendWith(InitialPageIgnoreExtension.class)
 public class HomeScreenTest {
 
     private static final Logger LOGGER = Logger.getLogger(HomeScreenTest.class.getName());

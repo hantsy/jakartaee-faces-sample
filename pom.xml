@@ -21,23 +21,23 @@
         <maven-war-plugin.version>3.3.2</maven-war-plugin.version>
         <cargo-maven3-plugin.version>1.10.7</cargo-maven3-plugin.version>
         <maven-dependency-plugin.version>3.6.0</maven-dependency-plugin.version>
-        <maven-surefire-plugin.version>3.1.0</maven-surefire-plugin.version>
-        <maven-failsafe-plugin.version>3.1.0</maven-failsafe-plugin.version>
-        <maven-surefire-report-plugin.version>3.1.0</maven-surefire-report-plugin.version>
+        <maven-surefire-plugin.version>3.1.2</maven-surefire-plugin.version>
+        <maven-failsafe-plugin.version>3.1.2</maven-failsafe-plugin.version>
+        <maven-surefire-report-plugin.version>3.1.2</maven-surefire-report-plugin.version>
 
         <!-- Jakarta EE API -->
         <jakartaee-api.version>10.0.0</jakartaee-api.version>
 
         <!-- Arquillian BOM -->
         <arquillian.version>1.7.0.Final</arquillian.version>
-        <arquillian-drone.version>3.0.0-alpha.7</arquillian-drone.version>
+        <arquillian-drone.version>3.0.0-alpha.5</arquillian-drone.version>
         <arquillian-graphene.version>3.0.0-alpha.3</arquillian-graphene.version>
         <arquillian-selenium.version>2.53.0</arquillian-selenium.version>
-        <htmlunit.version>2.70.0</htmlunit.version>
+        <htmlunit.version>2.68.0</htmlunit.version>
 
         <!-- Glassfish server -->
-        <glassfish.version>7.0.0-M10</glassfish.version>
-        <arquillian-glassfish-jakarta.version>9a3d1129</arquillian-glassfish-jakarta.version>
+        <glassfish.version>7.0.5</glassfish.version>
+        <arquillian-glassfish-jakarta.version>7.0.5</arquillian-glassfish-jakarta.version>
         <jersey.version>3.1.0</jersey.version>
         <eclipselink.version>4.0.1</eclipselink.version>
 
