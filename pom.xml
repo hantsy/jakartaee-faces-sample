@@ -39,7 +39,7 @@
         <glassfish.version>7.0.5</glassfish.version>
         <arquillian-glassfish-jakarta.version>7.0.5</arquillian-glassfish-jakarta.version>
         <jersey.version>3.1.0</jersey.version>
-        <eclipselink.version>4.0.1</eclipselink.version>
+        <eclipselink.version>4.0.2</eclipselink.version>
 
         <!-- Payara server -->
         <payara.version>6.2022.1</payara.version>
