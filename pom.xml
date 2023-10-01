@@ -37,7 +37,7 @@
 
         <!-- Glassfish server -->
         <glassfish.version>7.0.5</glassfish.version>
-        <arquillian-glassfish-jakarta.version>v7.0.7</arquillian-glassfish-jakarta.version>
+        <arquillian-glassfish-jakarta.version>7.0.8</arquillian-glassfish-jakarta.version>
         <jersey.version>3.1.0</jersey.version>
         <eclipselink.version>4.0.2</eclipselink.version>
 
