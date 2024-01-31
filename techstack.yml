@@ -1,0 +1,112 @@
+repo_name: hantsy/jakartaee-faces-sample
+report_id: 751d2dc5d6dc6c72e0a64b3b0f641825
+version: 0.1
+repo_type: Public
+timestamp: '2024-01-31T08:11:27+00:00'
+requested_by: dependabot[bot]
+provider: github
+branch: master
+detected_tools_count: 8
+tools:
+- name: CSS 3
+  description: The latest evolution of the Cascading Style Sheets language
+  website_url: https://developer.mozilla.org/en-US/docs/Web/CSS/CSS3
+  open_source: true
+  hosted_saas: false
+  category: Languages & Frameworks
+  sub_category: Languages
+  image_url: https://img.stackshare.io/service/6727/css.png
+  detection_source_url: https://github.com/hantsy/jakartaee-faces-sample
+  detection_source: Repo Metadata
+- name: Java
+  description: A concurrent, class-based, object-oriented, language specifically designed
+    to have as few implementation dependencies as possible
+  website_url: https://www.java.com
+  open_source: true
+  hosted_saas: false
+  category: Languages & Frameworks
+  sub_category: Languages
+  image_url: https://img.stackshare.io/service/995/K85ZWV2F.png
+  detection_source_url: https://github.com/hantsy/jakartaee-faces-sample
+  detection_source: Repo Metadata
+- name: Git
+  description: Fast, scalable, distributed revision control system
+  website_url: http://git-scm.com/
+  open_source: true
+  hosted_saas: false
+  category: Build, Test, Deploy
+  sub_category: Version Control System
+  image_url: https://img.stackshare.io/service/1046/git.png
+  detection_source_url: https://github.com/hantsy/jakartaee-faces-sample
+  detection_source: Repo Metadata
+- name: GitHub Actions
+  description: Automate your workflow from idea to production
+  website_url: https://github.com/features/actions
+  open_source: false
+  hosted_saas: true
+  category: Build, Test, Deploy
+  sub_category: Continuous Integration
+  image_url: https://img.stackshare.io/service/11563/actions.png
+  detection_source_url: https://github.com/hantsy/jakartaee-faces-sample/blob/master/.github/workflows/maven.yml
+  detection_source: ".github/workflows/maven.yml"
+  last_updated_by: dependabot[bot]
+  last_updated_on: 2023-11-01 07:03:44.000000000 Z
+- name: net.sourceforge.htmlunit:htmlunit
+  description: A headless browser intended for use in testing web-based applications
+  version: 2.68.0
+  license: Apache-2.0
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: Maven Packages
+  image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source_url: https://github.com/hantsy/jakartaee-faces-sample/blob/master/pom.xml
+  detection_source: pom.xml
+  last_updated_by: hantsy
+  last_updated_on: 2023-06-08 02:53:27.000000000 Z
+  vulnerabilities:
+  - name: HtmlUnit Code Injection vulnerability
+    cve_id: CVE-2023-26119
+    cve_url: https://github.com/advisories/GHSA-3xrr-7m6p-p7xh
+    detected_date: Jul 7
+    severity: critical
+    first_patched: 3.0.0
+- name: org.jboss.arquillian.graphene:graphene-webdriver
+  description: Starting point for integration Graphene test suites
+  version: 3.0.0
+  license: LGPL-2.1+
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: Maven Packages
+  image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source_url: https://github.com/hantsy/jakartaee-faces-sample/blob/master/pom.xml
+  detection_source: pom.xml
+  last_updated_by: dependabot[bot]
+  last_updated_on: 2023-12-01 04:42:53.000000000 Z
+- name: org.jboss.shrinkwrap.resolver:shrinkwrap-resolver-depchain
+  description: Single-POM Definition to export the ShrinkWrap Resolver artifacts in
+    proper scope
+  license: Apache-2.0
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: Maven Packages
+  image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source_url: https://github.com/hantsy/jakartaee-faces-sample/blob/master/pom.xml
+  detection_source: pom.xml
+  last_updated_by: dependabot[bot]
+  last_updated_on: 2023-11-01 07:03:21.000000000 Z
+- name: org.junit.jupiter:junit-jupiter
+  description: Module "junit-jupiter" of JUnit 5
+  version: 5.10.0
+  license: EPL-2.0
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: Maven Packages
+  image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source_url: https://github.com/hantsy/jakartaee-faces-sample/blob/master/pom.xml
+  detection_source: pom.xml
+  last_updated_by: hantsy
+  last_updated_on: 2023-06-08 02:53:27.000000000 Z
