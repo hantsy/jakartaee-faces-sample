@@ -47,7 +47,7 @@
 
         <!-- Wildfly server-->
         <wildfly.version>27.0.0.Final</wildfly.version>
-        <wildfly-maven-plugin.version>4.2.1.Final</wildfly-maven-plugin.version>
+        <wildfly-maven-plugin.version>4.2.2.Final</wildfly-maven-plugin.version>
         <wildfly-arquillian.version>5.0.0.Alpha6</wildfly-arquillian.version>
         <!--  websockets-jsr and resteasy for client, aligned with Wildfly version. -->
         <undertow-websockets-jsr.version>2.0.26.Final</undertow-websockets-jsr.version>
