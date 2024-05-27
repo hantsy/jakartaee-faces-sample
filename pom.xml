@@ -60,8 +60,8 @@
         <!-- By default, skip tests -->
         <skipTests>true</skipTests>
         
-        <!-- PhantomJS will be our default browser if no profile is specified-->
-        <browser>phantomjs</browser> 
+        <!-- Available options are: internetexplorer, chromeheadless, edge, safari, chrome, firefox, htmlunit-->
+        <browser>htmlunit</browser>
     </properties>
     <dependencyManagement>
         <dependencies>
