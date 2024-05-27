@@ -100,7 +100,7 @@ public class HomeScreenTest {
         }
     }
 
-    @Disabled // see: // see: https://github.com/arquillian/arquillian-core/issues/312
+    @Disabled // see: https://github.com/arquillian/arquillian-core/issues/312
     @Test
     public void testHomePageObject(@InitialPage HomePage home) {
         home.assertTodoTasksSize(2);
