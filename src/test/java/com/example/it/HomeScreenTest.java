@@ -16,6 +16,7 @@ import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.asset.EmptyAsset;
 import org.jboss.shrinkwrap.api.importer.ExplodedImporter;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.openqa.selenium.By;
@@ -36,7 +37,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
  * @author hantsy
  */
 @ExtendWith(ArquillianExtension.class)
-@ExtendWith(InitialPageIgnoreExtension.class)
 public class HomeScreenTest {
 
     private static final Logger LOGGER = Logger.getLogger(HomeScreenTest.class.getName());
@@ -100,6 +100,7 @@ public class HomeScreenTest {
         }
     }
 
+    @Disabled // see: // see: https://github.com/arquillian/arquillian-core/issues/312
     @Test
     public void testHomePageObject(@InitialPage HomePage home) {
         home.assertTodoTasksSize(2);
