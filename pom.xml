@@ -58,7 +58,7 @@
         <liberty.runtime.version>22.0.0.12</liberty.runtime.version>
         <!-- WARNING: 10.15.x.x does not work with openliberty 20.0.0.1 -->
         <derby.version>10.14.2.0</derby.version>
-        <liberty-maven-plugin.version>3.10.3</liberty-maven-plugin.version>
+        <liberty-maven-plugin.version>3.11.1</liberty-maven-plugin.version>
         
         <!-- By default, skip tests -->
         <skipTests>true</skipTests>
