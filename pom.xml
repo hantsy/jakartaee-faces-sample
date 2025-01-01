@@ -37,7 +37,7 @@
         <arquillian-graphene.version>3.0.0-alpha.4</arquillian-graphene.version>
 
         <!-- Glassfish server -->
-        <glassfish.version>7.0.18</glassfish.version>
+        <glassfish.version>7.0.20</glassfish.version>
         <arquillian-glassfish-jakarta.version>7.0.10</arquillian-glassfish-jakarta.version>
         <jersey.version>3.1.0</jersey.version>
         <eclipselink.version>4.0.4</eclipselink.version>
