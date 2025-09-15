@@ -1,13 +1,10 @@
-package com.example.it;
+package com.example.it.page;
 
 import com.example.Bootstrap;
 import com.example.config.FacesConfigurationBean;
 import com.example.domain.Task;
-import com.example.it.page.HomePage;
 import com.example.web.TaskHome;
 import org.jboss.arquillian.container.test.api.Deployment;
-import org.jboss.arquillian.drone.api.annotation.Drone;
-import org.jboss.arquillian.graphene.Graphene;
 import org.jboss.arquillian.graphene.page.InitialPage;
 import org.jboss.arquillian.junit5.ArquillianExtension;
 import org.jboss.arquillian.test.api.ArquillianResource;
@@ -17,30 +14,20 @@ import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.asset.EmptyAsset;
 import org.jboss.shrinkwrap.api.importer.ExplodedImporter;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
 
-import java.net.URL;
-import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 
 /**
  * @author hantsy
  */
 @ExtendWith(ArquillianExtension.class)
-public class HomeScreenTest {
+public class HomePageTest {
 
-    private static final Logger LOGGER = Logger.getLogger(HomeScreenTest.class.getName());
+    private static final Logger LOGGER = Logger.getLogger(HomePageTest.class.getName());
 
     private static final String WEBAPP_SRC = "src/main/webapp";
 
@@ -66,44 +53,9 @@ public class HomeScreenTest {
         return war;
     }
 
-    @ArquillianResource
-    private URL deploymentUrl;
-
-    @Drone
-    private WebDriver browser;
-
-    @FindBy(id = "todotasks")
-    private WebElement todotasks;
-
-    @FindBy(id = "doingtasks")
-    private WebElement doingtasks;
-
-    @FindBy(id = "donetasks")
-    private WebElement donetasks;
-
+    // see: https://github.com/arquillian/arquillian-core/issues/312
     @Test
-    public void testHomePage() {
-        final String url = deploymentUrl.toExternalForm();
-        LOGGER.log(Level.INFO, "deploymentUrl:{0}", url);
-        this.browser.get(url + "/tasks.xhtml");
-        assertEquals(2, todotasks.findElements(By.cssSelector("li.list-group-item")).size());
-        assertTrue(doingtasks.findElements(By.cssSelector("li.list-group-item")).isEmpty());
-        assertTrue(donetasks.findElements(By.cssSelector("li.list-group-item")).isEmpty());
-        List<WebElement> todoTasksWebElements = todotasks.findElements(By.cssSelector("li.list-group-item"));
-        if (!todoTasksWebElements.isEmpty()) {
-            WebElement buttonElement = todoTasksWebElements.get(0).findElement(By.cssSelector("a.btn"));
-            Graphene.guardHttp(buttonElement).click();
-
-            Graphene.waitGui();
-
-            assertEquals(1, todotasks.findElements(By.cssSelector("li.list-group-item")).size());
-            assertEquals(1, doingtasks.findElements(By.cssSelector("li.list-group-item")).size());
-        }
-    }
-
-    @Disabled // see: https://github.com/arquillian/arquillian-core/issues/312
-    @Test
-    public void testHomePageObject(@InitialPage HomePage home) {
+    public void testHomePageObject(@ArquillianResource @InitialPage HomePage home) {
         home.assertTodoTasksSize(2);
     }
 
