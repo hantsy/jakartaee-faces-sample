@@ -3,12 +3,10 @@ package com.example.it;
 import com.example.Bootstrap;
 import com.example.config.FacesConfigurationBean;
 import com.example.domain.Task;
-import com.example.it.page.HomePage;
 import com.example.web.TaskHome;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.drone.api.annotation.Drone;
 import org.jboss.arquillian.graphene.Graphene;
-import org.jboss.arquillian.graphene.page.InitialPage;
 import org.jboss.arquillian.junit5.ArquillianExtension;
 import org.jboss.arquillian.test.api.ArquillianResource;
 import org.jboss.shrinkwrap.api.Filters;
@@ -17,7 +15,6 @@ import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.asset.EmptyAsset;
 import org.jboss.shrinkwrap.api.importer.ExplodedImporter;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.openqa.selenium.By;
@@ -100,11 +97,4 @@ public class HomeScreenTest {
             assertEquals(1, doingtasks.findElements(By.cssSelector("li.list-group-item")).size());
         }
     }
-
-  //  @Disabled // see: https://github.com/arquillian/arquillian-core/issues/312
-    @Test
-    public void testHomePageObject(@InitialPage HomePage home) {
-        home.assertTodoTasksSize(2);
-    }
-
 }

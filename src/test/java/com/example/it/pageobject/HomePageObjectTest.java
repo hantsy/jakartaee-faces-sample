@@ -1,4 +1,4 @@
-package com.example.it.page;
+package com.example.it.pageobject;
 
 import com.example.Bootstrap;
 import com.example.config.FacesConfigurationBean;
@@ -25,9 +25,9 @@ import java.util.logging.Logger;
  * @author hantsy
  */
 @ExtendWith(ArquillianExtension.class)
-public class HomePageTest {
+public class HomePageObjectTest {
 
-    private static final Logger LOGGER = Logger.getLogger(HomePageTest.class.getName());
+    private static final Logger LOGGER = Logger.getLogger(HomePageObjectTest.class.getName());
 
     private static final String WEBAPP_SRC = "src/main/webapp";
 
@@ -55,7 +55,7 @@ public class HomePageTest {
 
     // see: https://github.com/arquillian/arquillian-core/issues/312
     @Test
-    public void testHomePageObject(@ArquillianResource @InitialPage HomePage home) {
+    public void testHomePageObject(@ArquillianResource @InitialPage HomePageObject home) {
         home.assertTodoTasksSize(2);
     }
 

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.example.it.page;
+package com.example.it.pageobject;
 
 
 import org.jboss.arquillian.graphene.page.Location;
@@ -19,7 +19,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
  * @author hantsy
  */
 @Location("tasks.xhtml")
-public class HomePage {
+public class HomePageObject {
 
     @FindBy(id = "todotasks")
     private WebElement todotasks;
