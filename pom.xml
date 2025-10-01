@@ -29,7 +29,7 @@
         <jakartaee-api.version>10.0.0</jakartaee-api.version>
 
         <!-- Arquillian BOM -->
-        <arquillian.version>1.9.3.Final</arquillian.version>
+        <arquillian.version>1.10.0.Final</arquillian.version>
         <!-- Since Aruqillian core 1.9.0.Final, need to add Aruqillian Jakarta BOM which aligns to Jakarta EE -->
         <arquillian-jakarta-bom.version>10.0.0.Final</arquillian-jakarta-bom.version>
         <shrinkwrap-resolver-bom.version>3.3.3</shrinkwrap-resolver-bom.version>  
