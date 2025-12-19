@@ -54,7 +54,7 @@ public class HomePageObjectTest {
     }
 
     // see: https://github.com/arquillian/arquillian-core/issues/312
-    @Test
+    // @Test
     public void testHomePageObject(@ArquillianResource @InitialPage HomePageObject home) {
         home.assertTodoTasksSize(2);
     }
