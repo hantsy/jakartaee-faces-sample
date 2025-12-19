@@ -38,7 +38,7 @@
 
         <!-- Glassfish server -->
         <glassfish.version>7.0.25</glassfish.version>
-        <arquillian-glassfish-jakarta.version>7.0.14</arquillian-glassfish-jakarta.version>
+        <arquillian-glassfish.version>7.0.14</arquillian-glassfish.version>
         <jersey.version>3.1.0</jersey.version>
         <eclipselink.version>4.0.5</eclipselink.version>
 
@@ -450,9 +450,9 @@
             </properties>
             <dependencies>
                 <dependency>
-                    <groupId>com.github.hantsy.arquillian-container-glassfish-jakarta</groupId>
-                    <artifactId>arquillian-glassfish-managed-jakarta</artifactId>
-                    <version>${arquillian-glassfish-jakarta.version}</version>
+                    <groupId>io.github.hantsy.arquillian</groupId>
+                    <artifactId>arquillian-glassfish-managed</artifactId>
+                    <version>${arquillian-glassfish.version}</version>
                     <scope>test</scope>
                 </dependency>
             </dependencies>
