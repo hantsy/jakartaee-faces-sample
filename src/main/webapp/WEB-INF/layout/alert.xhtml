@@ -4,10 +4,10 @@
     <ui:fragment rendered="#{not facesContext.validationFailed and not empty facesContext.messageList}">
 
         <ui:repeat var="message" value="#{facesContext.messageList}">
-            <div class="alert #{message.severity.ordinal==0?'alert-success':(message.severity.ordinal==1?'alert-warning':'alert-danger')}">
+            <div class="alert #{message.severity.ordinal==0?'alert-success':(message.severity.ordinal==1?'alert-warning':'alert-danger')} alert-dismissible fade show" role="alert">
                 #{message.summary}
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span class="fa fa-times-circle" aria-hidden="true">${null}</span>
+                    <i class="bi bi-x-circle"></i>
                 </button>
             </div>
         </ui:repeat>

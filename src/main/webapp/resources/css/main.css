@@ -1,29 +1,70 @@
 @CHARSET "UTF-8";
 
+/* Layout padding */
 main > .container {
-    padding: 60px 15px 0;
+    padding: 1.5rem 1rem 2rem;
 }
 
-dl dt{
-    font-weight: bold;
+/* Page title / banner (simplified) */
+.page-title-area {
+    background-color: #f3f5f7; /* lighter contrast to navbar (white) */
+    color: #212529;
+    border-radius: .5rem;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    margin-top: 3rem;
+    margin-bottom: 1rem;
 }
-dl dt, dl dd{
-    padding: 10px !important;
+.page-title-area .page-title {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: .25rem;
+    color: inherit;
 }
-span.fa{
-    margin: 0 2px;
+.page-title-area .lead { margin-bottom: 0; opacity: .75; }
+@media (min-width: 768px) {
+    .page-title-area .page-title { font-size: 2.5rem; }
 }
 
-footer {
-    margin-top: 15px;
-    background-color: #f5f5f5;
+/* Card styling to add depth */
+.card.shadow-sm {
+    border-radius: .75rem;
+    box-shadow: 0 .5rem 1rem rgba(18,38,63,0.06);
 }
 
-.footer > .container {
-    padding-right: 15px;
-    padding-left: 15px;
+
+
+/* Footer */
+footer { margin-top: 2rem; background-color: #f8f9fa; padding: 1.25rem 0; }
+.footer > .container { padding-right: 1rem; padding-left: 1rem; }
+
+/* Page header */
+h1.page-header{ margin: 0 0 1rem 0; font-weight: 600; }
+
+/* Form focus and buttons */
+.form-control:focus { box-shadow: 0 0 0 .15rem rgba(13,110,253,.15); }
+
+/* Responsive tweaks */
+@media (max-width: 576px) {
+  .bg-primary .h2 { font-size: 1.25rem; }
+  .card-body { padding: 1rem; }
 }
 
-h1.page-header{
-    margin: 20px 5px;
+/* Slightly stronger opacity utility for labels */
+.opacity-75 { opacity: .85 !important; }
+
+/* Navbar refresh styles — match Bootstrap docs colors & spacing */
+.navbar-refresh { background-color: #ffffff; border-bottom: 1px solid #e5e7eb; min-height: 56px; padding-top: .5rem; padding-bottom: .5rem; }
+.navbar-refresh .container { padding-left: 1rem; padding-right: 1rem; }
+.navbar-refresh .navbar-brand { padding: .25rem 0; display: flex; align-items: center; }
+.navbar-refresh .brand-title { font-size: 1.25rem; font-weight: 700; color: #212529; letter-spacing: -0.4px; margin-right: .75rem; }
+.navbar-refresh .nav-link { padding: .5rem .75rem; color: #6c757d; text-transform: uppercase; font-size: .9rem; letter-spacing: .06em; border-bottom: 3px solid transparent; transition: color .15s ease, border-color .15s ease; }
+.navbar-refresh .nav-link:hover { color: #0d6efd; border-bottom-color: rgba(13,110,253,0.12); }
+.navbar-refresh .nav-link.active, .navbar-refresh .nav-item.active .nav-link, .navbar-refresh .nav-link:focus { color: #0d6efd; font-weight: 600; border-bottom-color: #0d6efd; }
+.navbar-refresh .navbar-toggler { border-color: rgba(0,0,0,0.08); }
+
+@media (max-width: 767.98px) {
+    .navbar-refresh { padding-top: .4rem; padding-bottom: .4rem; min-height: auto; }
+    .navbar-refresh .brand-title { font-size: 1.125rem; }
+    .navbar-refresh .nav-link { font-size: .9rem; padding: .4rem .5rem; }
 }

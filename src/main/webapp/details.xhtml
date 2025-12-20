@@ -13,16 +13,24 @@
     <ui:define name="content">
         <div class="row">
             <div class="col-md-12">
-                <dl class="dl-horizontal">
-                    <dt>Task Name:</dt>
-                    <dd>#{viewTaskAction.task.name}</dd>
-                    <dt>Task Description:</dt>
-                    <dd>#{viewTaskAction.task.description}</dd>
-                    <dt>Created At:</dt>
-                    <dd>#{viewTaskAction.task.createdDate}</dd>
-                    <dt>Last Modified At:</dt>
-                    <dd>#{viewTaskAction.task.lastModifiedDate}</dd>
+                <dl class="row">
+                    <dt class="col-sm-3 fw-semibold me-2">Task Name:</dt>
+                    <dd class="col-sm-9">#{viewTaskAction.task.name}</dd>
+
+                    <dt class="col-sm-3 fw-semibold me-2">Task Description:</dt>
+                    <dd class="col-sm-9">#{viewTaskAction.task.description}</dd>
+
+                    <dt class="col-sm-3 fw-semibold me-2">Created At:</dt>
+                    <dd class="col-sm-9">#{viewTaskAction.task.createdDate}</dd>
+
+                    <dt class="col-sm-3 fw-semibold me-2">Last Modified At:</dt>
+                    <dd class="col-sm-9">#{viewTaskAction.task.lastModifiedDate}</dd>
                 </dl>
+                <div class="row">
+                    <div class="col-md-12 text-end mt-3">
+                        <h:link outcome="/tasks.xhtml" class="btn btn-primary btn-lg btn-outline">Back to Task List</h:link>
+                    </div>
+                </div>
             </div>
         </div>
     </ui:define>

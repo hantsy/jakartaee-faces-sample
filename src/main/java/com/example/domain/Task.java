@@ -18,8 +18,6 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.PrePersist;
 import jakarta.persistence.PreUpdate;
-import jakarta.persistence.Temporal;
-import jakarta.persistence.TemporalType;
 import java.time.LocalDateTime;
 import static com.example.domain.Task.Status.TODO;
 
@@ -36,11 +34,11 @@ public class Task implements Serializable {
         TODO, DOING, DONE;
     }
 
-    public static Comparator<Task> COMPARATOR = Comparator
+    public static final Comparator<Task> COMPARATOR = Comparator
             .comparing(Task::getName)
             .thenComparing(Task::getDescription);
 
-    public static Function<Task, String> TO_STRING = t
+    public static final Function<Task, String> TO_STRING = t
             -> "Post["
             + "\n title:" + t.getName()
             + "\n content:" + t.getDescription()
@@ -130,14 +128,7 @@ public class Task implements Serializable {
 
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 67 * hash + Objects.hashCode(this.id);
-        hash = 67 * hash + Objects.hashCode(this.name);
-        hash = 67 * hash + Objects.hashCode(this.description);
-        hash = 67 * hash + Objects.hashCode(this.status);
-        hash = 67 * hash + Objects.hashCode(this.createdDate);
-        hash = 67 * hash + Objects.hashCode(this.lastModifiedDate);
-        return hash;
+       return Objects.hashCode(this.name);
     }
 
     @Override
@@ -148,29 +139,11 @@ public class Task implements Serializable {
         if (obj == null) {
             return false;
         }
-        if (getClass() != obj.getClass()) {
+        if ( !(obj instanceof Task)) {
             return false;
         }
         final Task other = (Task) obj;
-        if (!Objects.equals(this.name, other.name)) {
-            return false;
-        }
-        if (!Objects.equals(this.description, other.description)) {
-            return false;
-        }
-        if (!Objects.equals(this.id, other.id)) {
-            return false;
-        }
-        if (this.status != other.status) {
-            return false;
-        }
-        if (!Objects.equals(this.createdDate, other.createdDate)) {
-            return false;
-        }
-        if (!Objects.equals(this.lastModifiedDate, other.lastModifiedDate)) {
-            return false;
-        }
-        return true;
+        return Objects.equals(this.name, other.name);
     }
 
     @PrePersist
