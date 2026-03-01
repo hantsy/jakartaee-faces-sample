@@ -1,6 +1,6 @@
 #  Jakarta EE Faces Sample
 
-![Compile and build](https://github.com/hantsy/jakartaee-faces-sample/workflows/build/badge.svg)
+[![build](https://github.com/hantsy/jakartaee-faces-sample/actions/workflows/maven.yml/badge.svg)](https://github.com/hantsy/jakartaee-faces-sample/actions/workflows/maven.yml)
 
 
 A Jakarta Faces example application demonstrates the latest Jakarta EE tech stack for classic web application development.
