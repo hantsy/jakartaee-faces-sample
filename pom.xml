@@ -37,7 +37,7 @@
         <arquillian-graphene.version>3.0.0.Final</arquillian-graphene.version>
 
         <!-- Glassfish server -->
-        <glassfish.version>7.1.0</glassfish.version>
+        <glassfish.version>8.0.0</glassfish.version>
         <arquillian-glassfish.version>7.0.14</arquillian-glassfish.version>
         <jersey.version>3.1.0</jersey.version>
         <eclipselink.version>4.0.9</eclipselink.version>
@@ -309,7 +309,7 @@
                         <version>${cargo-maven3-plugin.version}</version>
                         <configuration>
                             <container>
-                                <containerId>glassfish7x</containerId>
+                                <containerId>glassfish8x</containerId>
                                 <zipUrlInstaller>
                                     <url>
                                         https://github.com/eclipse-ee4j/glassfish/releases/download/${glassfish.version}/glassfish-${glassfish.version}.zip
@@ -319,7 +319,7 @@
                             </container>
                             <configuration>
                                 <!-- the configuration used to deploy -->
-                                <home>${project.build.directory}/glassfish7x-home</home>
+                                <home>${project.build.directory}/glassfish8x-home</home>
                                 <properties>
                                     <cargo.remote.password></cargo.remote.password>
                                     <cargo.glassfish.removeDefaultDatasource>true
@@ -390,7 +390,7 @@
                                 --add-opens java.base/java.lang=ALL-UNNAMED
                             </argLine>
                             <environmentVariables>
-                                <GLASSFISH_HOME>${project.build.directory}/glassfish7</GLASSFISH_HOME>
+                                <GLASSFISH_HOME>${project.build.directory}/glassfish8</GLASSFISH_HOME>
                             </environmentVariables>
                         </configuration>
                     </plugin>
