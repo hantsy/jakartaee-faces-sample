@@ -2,7 +2,13 @@
 
 ![Compile and build](https://github.com/hantsy/jakartaee-faces-sample/workflows/build/badge.svg)
 
+
 A Jakarta Faces example application demonstrates the latest Jakarta EE tech stack for classic web application development.
+
+The repository has already been upgraded to Jakarta EE 10.
+
+* For the old Jakarta EE 8 version, check the release [Archive for Jakarta EE 8](https://github.com/hantsy/jakartaee-faces-sample/releases/tag/v1.0).
+* For the legacy JavaEE 8 source codes, go to the repository [javaee8-jsf-sample](https://github.com/hantsy/javaee8-jsf-sample).
 
 ![home](./home.png)
 
@@ -24,7 +30,7 @@ A Jakarta Faces example application demonstrates the latest Jakarta EE tech stac
    mvn clean package cargo:run -pglassfish
    ```
 
-   Run the test on the GlassFish managed adapter.
+3. Run the test on the GlassFish managed adapter.
 
    ```bash
    mvn clean verify -Parg-glassfish-managed
