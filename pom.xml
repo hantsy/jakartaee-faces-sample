@@ -19,8 +19,8 @@
         <!-- Maven Plugins -->
         <maven-compiler-plugin.version>3.14.1</maven-compiler-plugin.version>
         <maven-war-plugin.version>3.4.0</maven-war-plugin.version>
-        <cargo-maven3-plugin.version>1.10.24</cargo-maven3-plugin.version>
-        <maven-dependency-plugin.version>3.8.1</maven-dependency-plugin.version>
+        <cargo-maven3-plugin.version>1.10.25</cargo-maven3-plugin.version>
+        <maven-dependency-plugin.version>3.9.0</maven-dependency-plugin.version>
         <maven-surefire-plugin.version>3.5.4</maven-surefire-plugin.version>
         <maven-failsafe-plugin.version>3.5.4</maven-failsafe-plugin.version>
         <maven-surefire-report-plugin.version>3.5.4</maven-surefire-report-plugin.version>
@@ -32,37 +32,26 @@
         <arquillian.version>1.10.0.Final</arquillian.version>
         <!-- Since Aruqillian core 1.9.0.Final, need to add Aruqillian Jakarta BOM which aligns to Jakarta EE -->
         <arquillian-jakarta-bom.version>10.0.0.Final</arquillian-jakarta-bom.version>
-        <shrinkwrap-resolver-bom.version>3.3.4</shrinkwrap-resolver-bom.version>  
-        <arquillian-drone.version>3.0.0-alpha.8</arquillian-drone.version>
-        <arquillian-graphene.version>3.0.0-alpha.4</arquillian-graphene.version>
+        <shrinkwrap-resolver-bom.version>3.3.4</shrinkwrap-resolver-bom.version>
+        <arquillian-drone.version>3.0.0.Final</arquillian-drone.version>
+        <arquillian-graphene.version>3.0.0.Final</arquillian-graphene.version>
 
         <!-- Glassfish server -->
-        <glassfish.version>7.0.25</glassfish.version>
+        <glassfish.version>7.0.24</glassfish.version>
         <arquillian-glassfish.version>7.0.14</arquillian-glassfish.version>
         <jersey.version>3.1.0</jersey.version>
-        <eclipselink.version>4.0.5</eclipselink.version>
+        <eclipselink.version>4.0.8</eclipselink.version>
 
-        <!-- Payara server -->
-        <payara.version>6.2022.1</payara.version>
-        <arquillian-payara.version>3.0.alpha7</arquillian-payara.version>
+        <!-- tests -->
+        <junit.version>5.11.4</junit.version>
+        <mockito.version>5.22.0</mockito.version>
+        <hamcrest.version>3.0</hamcrest.version>
+        <awaitility.version>4.3.0</awaitility.version>
+        <json-path.version>2.10.0</json-path.version>
 
-        <!-- Wildfly server-->
-        <wildfly.version>38.0.0.Final</wildfly.version>
-        <wildfly-maven-plugin.version>5.1.1.Final</wildfly-maven-plugin.version>
-        <wildfly-arquillian.version>5.0.1</wildfly-arquillian.version>
-        <!--  websockets-jsr and resteasy for client, aligned with Wildfly version. -->
-        <undertow-websockets-jsr.version>2.0.26.Final</undertow-websockets-jsr.version>
-        <resteasy.version>6.2.0.Final</resteasy.version>
-
-        <!-- OpenLiberty server -->
-        <liberty.runtime.version>22.0.0.12</liberty.runtime.version>
-        <!-- WARNING: 10.15.x.x does not work with openliberty 20.0.0.1 -->
-        <derby.version>10.14.2.0</derby.version>
-        <liberty-maven-plugin.version>3.11.2</liberty-maven-plugin.version>
-        
         <!-- By default, skip tests -->
         <skipTests>true</skipTests>
-        
+
         <!-- Available options are: internetexplorer, chromeheadless, edge, safari, chrome, firefox, htmlunit-->
         <browser>htmlunit</browser>
     </properties>
@@ -89,14 +78,14 @@
                 <version>${arquillian-jakarta-bom.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
-            </dependency>	
-    	    <dependency>
+            </dependency>
+            <dependency>
                 <groupId>org.jboss.shrinkwrap.resolver</groupId>
                 <artifactId>shrinkwrap-resolver-bom</artifactId>
                 <version>${shrinkwrap-resolver-bom.version}</version>
                 <scope>import</scope>
                 <type>pom</type>
-    	    </dependency>
+            </dependency>
             <!-- Arquillian Drone dependencies and WebDriver/Selenium dependencies -->
             <dependency>
                 <groupId>org.jboss.arquillian.extension</groupId>
@@ -122,28 +111,29 @@
                 <scope>test</scope>
             </dependency>
 
-            <!-- https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter -->
             <dependency>
-                <groupId>org.junit.jupiter</groupId>
-                <artifactId>junit-jupiter</artifactId>
-                <version>5.11.4</version>
-                <scope>test</scope>
+                <groupId>org.junit</groupId>
+                <artifactId>junit-bom</artifactId>
+                <version>${junit.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
             </dependency>
 
             <!-- Mockito -->
-            <!-- https://mvnrepository.com/artifact/org.mockito/mockito-core -->
+            <!-- Source: https://mvnrepository.com/artifact/org.mockito/mockito-bom -->
             <dependency>
                 <groupId>org.mockito</groupId>
-                <artifactId>mockito-core</artifactId>
-                <version>5.20.0</version>
-                <scope>test</scope>
+                <artifactId>mockito-bom</artifactId>
+                <version>${mockito.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
             </dependency>
 
             <!-- https://mvnrepository.com/artifact/org.hamcrest/hamcrest -->
             <dependency>
                 <groupId>org.hamcrest</groupId>
                 <artifactId>hamcrest</artifactId>
-                <version>3.0</version>
+                <version>${hamcrest.version}</version>
                 <scope>test</scope>
             </dependency>
 
@@ -151,7 +141,7 @@
             <dependency>
                 <groupId>org.awaitility</groupId>
                 <artifactId>awaitility</artifactId>
-                <version>4.3.0</version>
+                <version>${awaitility.version}</version>
                 <scope>test</scope>
             </dependency>
 
@@ -159,14 +149,14 @@
             <dependency>
                 <groupId>com.jayway.jsonpath</groupId>
                 <artifactId>json-path</artifactId>
-                <version>2.9.0</version>
+                <version>${json-path.version}</version>
                 <scope>test</scope>
             </dependency>
             <!-- https://mvnrepository.com/artifact/com.jayway.jsonpath/json-path-assert -->
             <dependency>
                 <groupId>com.jayway.jsonpath</groupId>
                 <artifactId>json-path-assert</artifactId>
-                <version>2.9.0</version>
+                <version>${json-path.version}</version>
                 <scope>test</scope>
             </dependency>
         </dependencies>
@@ -234,6 +224,15 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>${maven-compiler-plugin.version}</version>
+                <configuration>
+                    <annotationProcessorPaths>
+                        <path>
+                            <groupId>org.eclipse.persistence</groupId>
+                            <artifactId>org.eclipse.persistence.jpa.modelgen.processor</artifactId>
+                            <version>${eclipselink.version}</version>
+                        </path>
+                    </annotationProcessorPaths>
+                </configuration>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -292,115 +291,13 @@
     </build>
 
     <profiles>
-
-        <profile>
-            <id>wildfly</id>
-            <dependencies>
-            </dependencies>
-            <properties>
-                <!-- Wildfly server -->
-                <wildfly.artifactId>wildfly-preview-dist</wildfly.artifactId>
-                <jboss-as.home>${project.build.directory}/wildfly-preview-${wildfly.version}</jboss-as.home>
-            </properties>
-            <build>
-                <plugins>
-
-                    <!-- unpack a copy of WildFly-->
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-dependency-plugin</artifactId>
-                        <version>${maven-dependency-plugin.version}</version>
-                        <executions>
-                            <execution>
-                                <id>unpack</id>
-                                <phase>process-classes</phase>
-                                <goals>
-                                    <goal>unpack</goal>
-                                </goals>
-                                <configuration>
-                                    <artifactItems>
-                                        <artifactItem>
-                                            <groupId>org.wildfly</groupId>
-                                            <artifactId>${wildfly.artifactId}</artifactId>
-                                            <version>${wildfly.version}</version>
-                                            <type>zip</type>
-                                            <overWrite>false</overWrite>
-                                            <outputDirectory>${project.build.directory}</outputDirectory>
-                                        </artifactItem>
-                                    </artifactItems>
-                                </configuration>
-                            </execution>
-                        </executions>
-                    </plugin>
-
-                    <!-- The WildFly plugin deploys your war to a local running WildFly container -->
-                    <!-- To use, run: mvn package wildfly:deploy -->
-                    <!-- For Jakarta EE 9, use `wildfly-preview-dist` as artifactId instead to start and deploy applications-->
-                    <!-- Run: mvn clean wildfly:run -PWildfly -Dwildfly.artifactId=wildfly-preview-dist -Dwildfly.version=22.0.0.Alpha1 -->
-                    <!-- or set the `jboss-as.home` to run: mvn clean wildfly:run -PWildfly -Djboss-as.home=D:\appsvr\wildfly-preview-22.0.0.Alpha1-->
-                    <plugin>
-                        <groupId>org.wildfly.plugins</groupId>
-                        <artifactId>wildfly-maven-plugin</artifactId>
-                        <version>${wildfly-maven-plugin.version}</version>
-                    </plugin>
-                </plugins>
-            </build>
-            <repositories>
-                <repository>
-                    <id>opensaml</id>
-                    <url>https://build.shibboleth.net/nexus/content/repositories/releases/</url>
-                </repository>
-            </repositories>
-        </profile>
-        <profile>
-            <id>openliberty</id>
-            <dependencies>
-            </dependencies>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-dependency-plugin</artifactId>
-                        <version>${maven-dependency-plugin.version}</version>
-                        <executions>
-                            <execution>
-                                <id>copy</id>
-                                <phase>package</phase>
-                                <goals>
-                                    <goal>copy</goal>
-                                </goals>
-                            </execution>
-                        </executions>
-                        <configuration>
-                            <artifactItems>
-                                <artifactItem>
-                                    <groupId>org.apache.derby</groupId>
-                                    <artifactId>derby</artifactId>
-                                    <version>${derby.version}</version>
-                                    <type>jar</type>
-                                    <overWrite>false</overWrite>
-                                </artifactItem>
-                            </artifactItems>
-                            <outputDirectory>${project.build.directory}/liberty/wlp/usr/shared/resources
-                            </outputDirectory>
-                        </configuration>
-                    </plugin>
-                    <!-- Enable liberty-maven-plugin -->
-                    <plugin>
-                        <groupId>io.openliberty.tools</groupId>
-                        <artifactId>liberty-maven-plugin</artifactId>
-                        <version>${liberty-maven-plugin.version}</version>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
         <profile>
             <id>glassfish</id>
             <activation>
                 <activeByDefault>true</activeByDefault>
             </activation>
             <properties>
-                <cargo.zipUrlInstaller.downloadDir>${project.basedir}/installs</cargo.zipUrlInstaller.downloadDir>
+                <cargo.zipUrlInstaller.downloadDir>${project.basedir}/../installs</cargo.zipUrlInstaller.downloadDir>
             </properties>
             <dependencies>
             </dependencies>
@@ -512,12 +409,6 @@
                 <browser>chrome</browser>
             </properties>
         </profile>
-        <profile>
-            <id>chromeheadless</id>
-            <properties>
-                <browser>chromeheadless</browser>
-            </properties>
-        </profile>
     </profiles>
     <reporting>
         <plugins>
@@ -528,10 +419,4 @@
             </plugin>
         </plugins>
     </reporting>
-    <repositories>
-        <repository>
-            <id>jitpack.io</id>
-            <url>https://jitpack.io</url>
-        </repository>
-    </repositories>
 </project>

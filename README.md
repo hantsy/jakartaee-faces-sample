@@ -1,9 +1,8 @@
-#  Jakarta EE Server Faces Sample
-
+#  Jakarta EE Faces Sample
 
 ![Compile and build](https://github.com/hantsy/jakartaee-faces-sample/workflows/build/badge.svg)
 
-A Jakarta Server Faces sample application based on the [jakartaee8-starter](https://github.com/hantsy/jakartaee8-starter) boilerplate.
+A Jakarta Faces example application demonstrates the latest Jakarta EE tech stack for classic web application development.
 
 ![home](./home.png)
 
@@ -13,19 +12,26 @@ A Jakarta Server Faces sample application based on the [jakartaee8-starter](http
 
 ## Build
 
-1. Clone a copy of the source codes.
+1. Clone a copy of the source code.
 
    ```bash
    git clone https://github.com/hantsy/jakartaee-faces-sample
    ```
 
-2. Run on Glassfish, Wildfly or Open Liberty.
+2. Run on Glassfish.
 
    ```bash
-   mvn clean package cargo:run -pglassfish-local
-   mvn clean wildfly:run -Pwildfly
-   mvn clean liberty:create dependency:copy liberty:run -Popenliberty
+   mvn clean package cargo:run -pglassfish
    ```
+
+   Run the test on the GlassFish managed adapter.
+
+   ```bash
+   mvn clean verify -Parg-glassfish-managed
+   ```
+
+ > [!WARNING]
+ > To reduce maintenance costs, I have removed the configuration for running the applications on WildFly, OpenLiberty, Payara, etc. If you need to run it on these application servers, please refer to [jakartaee9-starter-boilerplate](https://github.com/hantsy/jakartaee9-starter-boilerplate) or  [jakartaee10-starter-boilerplate](https://github.com/hantsy/jakartaee10-starter-boilerplate) and add the configuration yourself.
    
 ## Reference
 

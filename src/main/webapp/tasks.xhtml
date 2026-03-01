@@ -16,8 +16,7 @@
                     <div class="card">
                         <!-- Default panel contents -->
                         <div class="card-header">
-                            <span class="fa fa-list-alt" aria-hidden="true"></span>
-                            TODO
+                            <i class="bi bi-list-task"></i>TODO
                         </div>
                         <div class="card-body">
                             <p>Tasks newly added in the backlog.</p>
@@ -34,11 +33,11 @@
                                             <span class="pull-right">
                                                 <h:link outcome="/details.xhtml">
                                                     <f:param name="id" value="#{task.id}"></f:param>
-                                                    <span class="fa fa-file-text-o" aria-hidden="true"></span>
+                                                    <i class="bi bi-file-earmark-text"></i>
                                                 </h:link> 
                                                 <h:link outcome="/form.xhtml">
                                                     <f:param name="id" value="#{task.id}"></f:param>
-                                                    <span class="fa fa-pencil" aria-hidden="true"></span>
+                                                    <i class="bi bi-pencil-square"></i>
                                                 </h:link>
                                             </span>
                                         </h4>
@@ -46,7 +45,7 @@
                                         <p>
                                             <h:commandLink action="#{taskHome.markTaskDoing(task.id)}"
                                                            styleClass="btn btn-sm btn-success">
-                                                <span class="fa fa-play" aria-hidden="true"></span>START
+                                                <i class="bi bi-play-fill"></i>START
                                             </h:commandLink>
                                         </p>
                                     </li>
@@ -61,8 +60,7 @@
                     <div class="card">
                         <!-- Default panel contents -->
                         <div class="card-header">
-                            <span class="fa fa-hourglass-start" aria-hidden="true"></span>
-                            WORK IN PROGRESS
+                            <i class="bi bi-hourglass-split"></i> WORK IN PROGRESS
                         </div>
                         <div class="card-body">
                             <p>Tasks had been assigned and started.</p>
@@ -78,8 +76,7 @@
                                         <p>
                                             <h:commandLink action="#{taskHome.markTaskDone(task.id)}"
                                                            styleClass="btn btn-sm btn-info">
-                                                <span class="fa fa-check" aria-hidden="true"></span>
-                                                DONE
+                                                <i class="bi bi-check-circle-fill">${null}</i> DONE
                                             </h:commandLink>
                                         </p>
                                     </li>
@@ -92,8 +89,7 @@
                     <div class="card">
                         <!-- Default panel contents -->
                         <div class="card-header">
-                            <span class="fa fa-check-circle-o" aria-hidden="true"></span>
-                            DONE
+                            <i class="bi bi-check2-square"></i> DONE
                         </div>
                         <div class="card-body">
                             <p>Tasks had been done successfully.</p>
@@ -110,7 +106,7 @@
 
                                             <h:commandLink action="#{taskHome.deleteTask(task.id)}"
                                                            styleClass="btn btn-sm btn-danger">
-                                                <span class="fa fa-trash" aria-hidden="true"></span> DELETE
+                                                <i class="bi bi-trash"></i> DELETE
                                             </h:commandLink>
                                         </p>
                                     </li>
