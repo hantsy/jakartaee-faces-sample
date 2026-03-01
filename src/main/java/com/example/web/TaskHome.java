@@ -3,12 +3,12 @@ package com.example.web;
 import com.example.domain.Task;
 import com.example.domain.TaskNotFoundException;
 import com.example.domain.TaskRepository;
-
 import jakarta.faces.application.FacesMessage;
 import jakarta.faces.context.FacesContext;
 import jakarta.faces.view.ViewScoped;
 import jakarta.inject.Inject;
 import jakarta.inject.Named;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -26,8 +26,8 @@ public class TaskHome implements Serializable {
 
     //@Inject
     private static final Logger LOGGER = Logger.getLogger(TaskHome.class.getName());
-    
-    @Inject 
+
+    @Inject
     FacesContext facesContext;
 
     @Inject
@@ -67,17 +67,17 @@ public class TaskHome implements Serializable {
         List<TaskDetails> taskList = new ArrayList<>();
         List<Task> tasks = taskRepository.findByStatus(status);
 
-        tasks.stream().map((task) -> {
-            TaskDetails details = new TaskDetails();
-            details.setId(task.getId());
-            details.setName(task.getName());
-            details.setDescription(task.getDescription());
-            details.setCreatedDate(task.getCreatedDate());
-            details.setLastModifiedDate(task.getLastModifiedDate());
-            return details;
-        }).forEach((details) -> {
-            taskList.add(details);
-        });
+        tasks.stream()
+                .map((task) -> {
+                    TaskDetails details = new TaskDetails();
+                    details.setId(task.getId());
+                    details.setName(task.getName());
+                    details.setDescription(task.getDescription());
+                    details.setCreatedDate(task.getCreatedDate());
+                    details.setLastModifiedDate(task.getLastModifiedDate());
+                    return details;
+                })
+                .forEach(taskList::add);
 
         return taskList;
     }
@@ -86,8 +86,8 @@ public class TaskHome implements Serializable {
 
         LOGGER.log(Level.INFO, "delete task of id@{0}", id);
 
-        Task  task= taskRepository.findOptionalById(id)
-                    .orElseThrow(()-> new TaskNotFoundException(id));
+        Task task = taskRepository.findOptionalById(id)
+                .orElseThrow(() -> new TaskNotFoundException(id));
         taskRepository.delete(task);
 
         // retrieve all tasks
@@ -101,7 +101,7 @@ public class TaskHome implements Serializable {
         LOGGER.log(Level.INFO, "changing task DONG @{0}", id);
 
         Task task = taskRepository.findOptionalById(id)
-                    .orElseThrow(()-> new TaskNotFoundException(id));
+                .orElseThrow(() -> new TaskNotFoundException(id));
         task.setStatus(Task.Status.DOING);
         taskRepository.update(task);
 
@@ -113,7 +113,7 @@ public class TaskHome implements Serializable {
         LOGGER.log(Level.INFO, "changing task DONE @{0}", id);
 
         Task task = taskRepository.findOptionalById(id)
-                    .orElseThrow(()-> new TaskNotFoundException(id));
+                .orElseThrow(() -> new TaskNotFoundException(id));
         task.setStatus(Task.Status.DONE);
         taskRepository.update(task);
 

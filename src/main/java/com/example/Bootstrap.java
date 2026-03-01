@@ -2,21 +2,24 @@ package com.example;
 
 import com.example.domain.Task;
 import com.example.domain.TaskRepository;
+import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.enterprise.event.Observes;
+import jakarta.enterprise.event.Startup;
+import jakarta.inject.Inject;
+import jakarta.transaction.Transactional;
+
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import java.util.stream.Collectors;
 import java.util.stream.Stream;
-import jakarta.annotation.PostConstruct;
-import jakarta.ejb.Singleton;
-import jakarta.ejb.Startup;
-import jakarta.inject.Inject;
 
 /**
  *
  * @author hantsy
  */
-@Startup
-@Singleton
+// see: https://github.com/jakartaee/transactions/issues/235
+// Not a problem in the GlassFish 8.0.0/WildFly 39+
+@ApplicationScoped
+@Transactional
 public class Bootstrap {
 
     @Inject
@@ -25,8 +28,7 @@ public class Bootstrap {
     @Inject
     TaskRepository taskRepository;
 
-    @PostConstruct
-    public void init() {
+    public void init(@Observes Startup startup) {
         LOG.log(Level.INFO, "bootstraping application...");
 
         Stream.of("first", "second")
@@ -38,7 +40,6 @@ public class Bootstrap {
                     return task;
                 })
                 .map(data -> taskRepository.save(data))
-                .collect(Collectors.toList())
                 .forEach(task -> LOG.log(Level.INFO, " task saved: {0}", new Object[]{task}));
     }
 }

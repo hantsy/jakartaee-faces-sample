@@ -3,21 +3,25 @@ package com.example.domain;
 import java.util.List;
 import java.util.Optional;
 import jakarta.ejb.Stateless;
+import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.inject.Inject;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.TypedQuery;
 import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaQuery;
 import jakarta.persistence.criteria.Root;
+import jakarta.transaction.Transactional;
 
 /**
  *
  * @author hantsy
  */
-@Stateless
+@ApplicationScoped
+@Transactional
 public class TaskRepository {
 
-    @PersistenceContext
+    @Inject
     EntityManager em;
 
     public Task findById(Long id) {
