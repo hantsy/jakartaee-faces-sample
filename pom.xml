@@ -39,8 +39,8 @@
         <!-- Glassfish server -->
         <glassfish.version>8.0.0</glassfish.version>
         <arquillian-glassfish.version>7.0.14</arquillian-glassfish.version>
-        <jersey.version>3.1.0</jersey.version>
-        <eclipselink.version>4.0.9</eclipselink.version>
+        <jersey.version>4.0.0</jersey.version>
+        <eclipselink.version>5.0.0-B13</eclipselink.version>
 
         <!-- tests -->
         <junit.version>6.0.3</junit.version>
