@@ -5,7 +5,7 @@
 
 A Jakarta Faces example application demonstrates the latest Jakarta EE tech stack for classic web application development.
 
-The repository has already been upgraded to Jakarta EE 10.
+The repository has already been upgraded to Jakarta EE 11.
 
 * For the Jakarta EE 10 version with GlassFish v7.1 and Java 21, check the release [Archive for Jakarta EE 10 with GlassFish v7.1 and Java 21](https://github.com/hantsy/jakartaee-faces-sample/releases/tag/ee10-gf7-java21).
 * For the Jakarta EE 10 version, check the release [Archive for Jakarta EE 10](https://github.com/hantsy/jakartaee-faces-sample/releases/tag/ee10).
