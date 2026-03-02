@@ -19,6 +19,11 @@ The codebase has been upgraded to **Jakarta EE 11**.
 
 [Building a Jakarta Server Faces application](./docs/guide.md)
 
+## Prerequisites
+
+* Java 21
+* Apache Maven 3.x or 4.x (latest)
+
 ## Building and running
 
 1. Clone the repository:
