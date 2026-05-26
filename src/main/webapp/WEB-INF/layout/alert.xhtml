@@ -1,22 +1,28 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:jsf="jakarta.faces"
                 xmlns:ui="jakarta.faces.facelets"
 >
-    <ui:fragment rendered="#{not facesContext.validationFailed and not empty facesContext.messageList}">
-
+    <div jsf:id="alerts-container"
+         jsf:rendered="#{not facesContext.validationFailed and not empty facesContext.messageList}">
         <ui:repeat var="message" value="#{facesContext.messageList}">
-            <div class="alert #{message.severity.ordinal==0?'alert-success':(message.severity.ordinal==1?'alert-warning':'alert-danger')}">
-                #{message.summary}
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <i class="bi bi-x-circle">${null}</i>
-                </button>
+            <div class="alert alert-dismissible fade show #{message.severity.ordinal==0?'alert-success':(message.severity.ordinal==1?'alert-warning':'alert-danger')} d-flex align-items-center justify-content-between"
+                 role="alert">
+                <div class="d-flex align-items-center">
+                    <ui:fragment rendered="#{message.severity.ordinal==0}">
+                        <i class="bi bi-check-circle-fill me-2 fs-5"></i>
+                    </ui:fragment>
+                    <ui:fragment rendered="#{message.severity.ordinal==1}">
+                        <i class="bi bi-exclamation-triangle-fill me-2 fs-5"></i>
+                    </ui:fragment>
+                    <ui:fragment rendered="#{message.severity.ordinal>1}">
+                        <i class="bi bi-exclamation-octagon-fill me-2 fs-5"></i>
+                    </ui:fragment>
+                    <span>
+                        <strong class="me-1">#{message.summary}</strong> #{message.detail}
+                    </span>
+                </div>
+                <button type="button" class="btn-close position-static m-0" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
         </ui:repeat>
-
-        <!--        <h:messages id="messages" layout="vertical" globalOnly="true"
-                            styleClass="list-unstyled" showSummary="true" showDetail="false"
-                            errorClass="alert alert-danger" infoClass="alert alert-info"
-                            warnClass="alert alert-warning" >
-                </h:messages>-->
-
-    </ui:fragment>
+    </div>
 </ui:composition>

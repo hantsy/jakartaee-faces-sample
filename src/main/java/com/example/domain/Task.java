@@ -19,7 +19,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.PrePersist;
 import jakarta.persistence.PreUpdate;
 import java.time.LocalDateTime;
-import static com.example.domain.Task.Status.TODO;
+import static com.example.domain.Status.TODO;
 
 /**
  *
@@ -29,10 +29,6 @@ import static com.example.domain.Task.Status.TODO;
 public class Task implements Serializable {
 
     private static final long serialVersionUID = 1L;
-
-    public static enum Status {
-        TODO, DOING, DONE;
-    }
 
     public static final Comparator<Task> COMPARATOR = Comparator
             .comparing(Task::getName)

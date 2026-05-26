@@ -69,13 +69,13 @@ public class HomeScreenTest {
     @Drone
     private WebDriver browser;
 
-    @FindBy(id = "todotasks")
+    @FindBy(id = "todotasks-list")
     private WebElement todotasks;
 
-    @FindBy(id = "doingtasks")
+    @FindBy(id = "doingtasks-list")
     private WebElement doingtasks;
 
-    @FindBy(id = "donetasks")
+    @FindBy(id = "donetasks-list")
     private WebElement donetasks;
 
     @Test

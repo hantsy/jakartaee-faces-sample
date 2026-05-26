@@ -1,4 +1,5 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:jsf="jakarta.faces"
                 xmlns:ui="jakarta.faces.facelets"
                 xmlns:f="jakarta.faces.core"
                 xmlns:h="jakarta.faces.html"
@@ -8,114 +9,166 @@
             <f:viewAction action="#{taskHome.init()}"/>
         </f:metadata>
     </ui:define>
-    <ui:define name="pageTitle"> TASK LIST</ui:define>
+    <ui:define name="pageTitle">Taskboard Dashboard</ui:define>
     <ui:define name="content">
-        <h:form>
+        <form jsf:id="tasksForm">
             <div class="row">
-                <div class="col-md-4 col-xs-12">
-                    <div class="card">
-                        <!-- Default panel contents -->
-                        <div class="card-header">
-                            <i class="bi bi-list-task"></i>TODO
+                <!-- TODO COLUMN -->
+                <div class="col-lg-4 board-column todo-column">
+                    <div class="board-card">
+                        <div class="board-card-header">
+                            <i class="bi bi-list-task fs-5"></i>
+                            <span>Backlog / To Do</span>
+                            <span class="badge badge-todo ms-auto rounded-pill" jsf:rendered="#{not empty taskHome.todotasks}">
+                                #{taskHome.todotasks.size()}
+                            </span>
                         </div>
-                        <div class="card-body">
-                            <p>Tasks newly added in the backlog.</p>
-                        </div>
-
-                        <!-- List group -->
-                        <ui:fragment rendered="#{not empty taskHome.todotasks}">
-
-                            <ul id="todotasks" class="list-group">
+                        <div class="board-card-body">
+                            <p class="mb-3 text-muted small">Tasks newly added and waiting to be started.</p>
+                            
+                            <ul jsf:id="todotasks-list" jsf:rendered="#{not empty taskHome.todotasks}" class="list-unstyled p-0 m-0">
                                 <ui:repeat var="task" value="#{taskHome.todotasks}">
-                                    <li class="list-group-item">
-                                        <h4>
-                                            <span>##{task.id} #{task.name}</span>
-                                            <span class="pull-right">
-                                                <h:link outcome="/details.xhtml">
+                                    <li class="task-item">
+                                        <div class="task-header">
+                                            <div class="d-flex align-items-center">
+                                                <span class="task-id">##{task.id}</span>
+                                                <h4 class="task-title">#{task.name}</h4>
+                                            </div>
+                                            <div class="task-actions-right">
+                                                <a jsf:outcome="/details.xhtml" class="btn-link-action" title="View Details">
                                                     <f:param name="id" value="#{task.id}"></f:param>
-                                                    <i class="bi bi-file-earmark-text"></i>
-                                                </h:link> 
-                                                <h:link outcome="/form.xhtml">
+                                                    <i class="bi bi-eye"></i>
+                                                </a>
+                                                <a jsf:outcome="/form.xhtml" class="btn-link-action" title="Edit Task">
                                                     <f:param name="id" value="#{task.id}"></f:param>
-                                                    <i class="bi bi-pencil-square"></i>
-                                                </h:link>
-                                            </span>
-                                        </h4>
-                                        <p>#{task.description}</p>
-                                        <p>
-                                            <h:commandLink action="#{taskHome.markTaskDoing(task.id)}"
-                                                           styleClass="btn btn-sm btn-success">
-                                                <i class="bi bi-play-fill"></i>START
-                                            </h:commandLink>
-                                        </p>
+                                                    <i class="bi bi-pencil"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <p class="task-description">#{task.description}</p>
+                                        <div class="task-actions">
+                                            <span class="status-badge todo">Todo</span>
+                                            <button jsf:action="#{taskHome.markTaskDoing(task.id)}"
+                                                    class="btn btn-sm btn-success">
+                                                <i class="bi bi-play-fill"></i>Start
+                                            </button>
+                                        </div>
                                     </li>
                                 </ui:repeat>
                             </ul>
-
-                        </ui:fragment>
+                            
+                            <div jsf:rendered="#{empty taskHome.todotasks}" class="text-center py-4 text-muted">
+                                <i class="bi bi-inbox fs-2 d-block mb-2 opacity-50"></i>
+                                <span class="small">No tasks in backlog</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
-                <div id="doingtasks" class="col-md-4 col-xs-12">
-                    <div class="card">
-                        <!-- Default panel contents -->
-                        <div class="card-header">
-                            <i class="bi bi-hourglass-split"></i> WORK IN PROGRESS
+                <!-- WIP COLUMN -->
+                <div class="col-lg-4 board-column doing-column" id="doingtasks">
+                    <div class="board-card">
+                        <div class="board-card-header">
+                            <i class="bi bi-hourglass-split fs-5"></i>
+                            <span>Work In Progress</span>
+                            <span class="badge badge-doing ms-auto rounded-pill" jsf:rendered="#{not empty taskHome.doingtasks}">
+                                #{taskHome.doingtasks.size()}
+                            </span>
                         </div>
-                        <div class="card-body">
-                            <p>Tasks had been assigned and started.</p>
-                        </div>
-
-                        <!-- List group -->
-                        <ui:fragment rendered="#{not empty taskHome.doingtasks}">
-                            <ul id="doingtasks" class="list-group">
+                        <div class="board-card-body">
+                            <p class="mb-3 text-muted small">Tasks that are currently active and being worked on.</p>
+                            
+                            <ul jsf:id="doingtasks-list" jsf:rendered="#{not empty taskHome.doingtasks}" class="list-unstyled p-0 m-0">
                                 <ui:repeat var="task" value="#{taskHome.doingtasks}">
-                                    <li class="list-group-item">
-                                        <h4>##{task.id} #{task.name}</h4>
-                                        <p>#{task.description}</p>
-                                        <p>
-                                            <h:commandLink action="#{taskHome.markTaskDone(task.id)}"
-                                                           styleClass="btn btn-sm btn-info">
-                                                <i class="bi bi-check-circle-fill">${null}</i> DONE
-                                            </h:commandLink>
-                                        </p>
+                                    <li class="task-item">
+                                        <div class="task-header">
+                                            <div class="d-flex align-items-center">
+                                                <span class="task-id">##{task.id}</span>
+                                                <h4 class="task-title">#{task.name}</h4>
+                                            </div>
+                                            <div class="task-actions-right">
+                                                <a jsf:outcome="/details.xhtml" class="btn-link-action" title="View Details">
+                                                    <f:param name="id" value="#{task.id}"></f:param>
+                                                    <i class="bi bi-eye"></i>
+                                                </a>
+                                                <a jsf:outcome="/form.xhtml" class="btn-link-action" title="Edit Task">
+                                                    <f:param name="id" value="#{task.id}"></f:param>
+                                                    <i class="bi bi-pencil"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <p class="task-description">#{task.description}</p>
+                                        <div class="task-actions">
+                                            <span class="status-badge doing">Doing</span>
+                                            <button jsf:action="#{taskHome.markTaskDone(task.id)}"
+                                                    class="btn btn-sm btn-info">
+                                                <i class="bi bi-check-circle-fill"></i>Complete
+                                            </button>
+                                        </div>
                                     </li>
                                 </ui:repeat>
                             </ul>
-                        </ui:fragment>
+                            
+                            <div jsf:rendered="#{empty taskHome.doingtasks}" class="text-center py-4 text-muted">
+                                <i class="bi bi-clipboard-plus fs-2 d-block mb-2 opacity-50"></i>
+                                <span class="small">No tasks currently in progress</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div id="donetasks" class="col-md-4 col-xs-12">
-                    <div class="card">
-                        <!-- Default panel contents -->
-                        <div class="card-header">
-                            <i class="bi bi-check2-square"></i> DONE
-                        </div>
-                        <div class="card-body">
-                            <p>Tasks had been done successfully.</p>
-                        </div>
 
-                        <!-- List group -->
-                        <ui:fragment rendered="#{not empty taskHome.donetasks}">
-                            <ul id="donetasks" class="list-group">
+                <!-- DONE COLUMN -->
+                <div class="col-lg-4 board-column done-column" id="donetasks">
+                    <div class="board-card">
+                        <div class="board-card-header">
+                            <i class="bi bi-check2-square fs-5"></i>
+                            <span>Completed Tasks</span>
+                            <span class="badge badge-done ms-auto rounded-pill" jsf:rendered="#{not empty taskHome.donetasks}">
+                                #{taskHome.donetasks.size()}
+                            </span>
+                        </div>
+                        <div class="board-card-body">
+                            <p class="mb-3 text-muted small">Tasks that have been successfully finished.</p>
+                            
+                            <ul jsf:id="donetasks-list" jsf:rendered="#{not empty taskHome.donetasks}" class="list-unstyled p-0 m-0">
                                 <ui:repeat var="task" value="#{taskHome.donetasks}">
-                                    <li class="list-group-item">
-                                        <h4>##{task.id} #{task.name}</h4>
-                                        <p>#{task.description}</p>
-                                        <p>
-
-                                            <h:commandLink action="#{taskHome.deleteTask(task.id)}"
-                                                           styleClass="btn btn-sm btn-danger">
-                                                <i class="bi bi-trash"></i> DELETE
-                                            </h:commandLink>
-                                        </p>
+                                    <li class="task-item">
+                                        <div class="task-header">
+                                            <div class="d-flex align-items-center">
+                                                <span class="task-id">##{task.id}</span>
+                                                <h4 class="task-title">#{task.name}</h4>
+                                            </div>
+                                            <div class="task-actions-right">
+                                                <a jsf:outcome="/details.xhtml" class="btn-link-action" title="View Details">
+                                                    <f:param name="id" value="#{task.id}"></f:param>
+                                                    <i class="bi bi-eye"></i>
+                                                </a>
+                                                <a jsf:outcome="/form.xhtml" class="btn-link-action" title="Edit Task">
+                                                    <f:param name="id" value="#{task.id}"></f:param>
+                                                    <i class="bi bi-pencil"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <p class="task-description">#{task.description}</p>
+                                        <div class="task-actions">
+                                            <span class="status-badge done">Done</span>
+                                            <button jsf:action="#{taskHome.deleteTask(task.id)}"
+                                                    class="btn btn-sm btn-danger">
+                                                <i class="bi bi-trash"></i>Delete
+                                            </button>
+                                        </div>
                                     </li>
                                 </ui:repeat>
                             </ul>
-                        </ui:fragment>
+                            
+                            <div jsf:rendered="#{empty taskHome.donetasks}" class="text-center py-4 text-muted">
+                                <i class="bi bi-check2-all fs-2 d-block mb-2 opacity-50"></i>
+                                <span class="small">No completed tasks yet</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-        </h:form>
+        </form>
     </ui:define>
 </ui:composition>

@@ -1,20 +1,33 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:jsf="jakarta.faces"
                 xmlns:ui="jakarta.faces.facelets"
                 xmlns:f="jakarta.faces.core"
                 xmlns:h="jakarta.faces.html"
                 template="/WEB-INF/layout/template.xhtml">
 
-    <ui:define name="pageTitle"> Psst...something was wrong</ui:define>
+    <ui:define name="pageTitle">
+        <span>Something went wrong</span>
+    </ui:define>
+    
     <ui:define name="content">
-
-        <div class="row">
-            <div class="col-md-12">
-                <div class="panel panel-danger">
-                    <!-- Default panel contents -->
-                    <div class="panel-heading"><i class="bi bi-card-checklist">${null}</i> Error Details
+        <div class="row justify-content-center">
+            <div class="col-lg-8 col-md-10 col-sm-12">
+                <div class="card border-0 shadow-lg overflow-hidden">
+                    <div class="card-header bg-danger text-white d-flex align-items-center gap-2 py-3 px-4">
+                        <i class="bi bi-exclamation-triangle-fill fs-5"></i>
+                        <h3 class="h5 mb-0 font-heading">Error Details</h3>
                     </div>
-                    <div class="panel-body">
-                        <p>${ex}</p>
+                    <div class="card-body p-4 bg-white">
+                        <p class="text-secondary mb-3">An unexpected exception was encountered. Here is the technical trace:</p>
+                        <div class="bg-light p-3 rounded border font-monospace text-danger small mb-4" style="overflow-x: auto; max-height: 300px;">
+                            ${ex}
+                        </div>
+                        
+                        <div class="d-flex justify-content-start border-top pt-3">
+                            <a jsf:outcome="/tasks.xhtml" class="btn btn-outline-secondary">
+                                <i class="bi bi-house-door"></i>Return to Homepage
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>

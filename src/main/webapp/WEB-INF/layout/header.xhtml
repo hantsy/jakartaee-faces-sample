@@ -1,25 +1,27 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:ui="jakarta.faces.facelets"
 >
-
-    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark" role="navigation">
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top" role="navigation">
         <div class="container">
-            <a class="navbar-brand" href="#{request.contextPath}/tasks.xhtml"><span
-                    class="text-uppercase">TaskBoard</span></a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
+            <a class="navbar-brand text-uppercase" href="#{request.contextPath}/tasks.xhtml">
+                <i class="bi bi-kanban me-2"></i>TaskBoard
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
                     aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
 
             <div class="collapse navbar-collapse" id="navbarCollapse">
-                <ul class="navbar-nav mr-auto">
-                    <li class="nav-item #{request.requestURI.contains('/tasks.xhtml')?'active':''}">
-                        <a class="nav-link text-uppercase" href="#{request.contextPath}/tasks.xhtml">Home <span
-                                class="sr-only">(current)</span></a>
+                <ul class="navbar-nav me-auto mb-2 mb-md-0">
+                    <li class="nav-item">
+                        <a class="nav-link #{request.requestURI.contains('/tasks.xhtml')?'active':''}" href="#{request.contextPath}/tasks.xhtml">
+                            <i class="bi bi-house-door me-1"></i> Home
+                        </a>
                     </li>
-                    <li class="nav-item #{request.requestURI.contains('/form.xhtml')?'active':''}">
-                        <a class="nav-link text-uppercase" href="#{request.contextPath}/form.xhtml">
-                            <i class="bi bi-plus-circle-fill"></i> New Task</a>
+                    <li class="nav-item">
+                        <a class="nav-link #{request.requestURI.contains('/form.xhtml')?'active':''}" href="#{request.contextPath}/form.xhtml">
+                            <i class="bi bi-plus-circle me-1"></i> New Task
+                        </a>
                     </li>
                 </ul>
             </div>

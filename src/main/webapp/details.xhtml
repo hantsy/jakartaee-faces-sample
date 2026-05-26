@@ -1,4 +1,5 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:jsf="jakarta.faces"
                 xmlns:ui="jakarta.faces.facelets"
                 xmlns:f="jakarta.faces.core"
                 xmlns:h="jakarta.faces.html"
@@ -9,29 +10,72 @@
             <f:viewAction action="#{viewTaskAction.init()}"/>
         </f:metadata>
     </ui:define>
-    <ui:define name="pageTitle"> TASK DETAILS(ID: #{viewTaskAction.task.id}) </ui:define>
+    <ui:define name="pageTitle">Task Details</ui:define>
     <ui:define name="content">
-        <div class="row">
-            <div class="col-md-12">
-                <dl class="dl-horizontal">
-                    <dt>Task Name:</dt>
-                    <dd>#{viewTaskAction.task.name}</dd>
-                    <dt>Status:</dt>
-                    <dd>#{viewTaskAction.task.status}</dd>
-                    <dt>Task Description:</dt>
-                    <dd>#{viewTaskAction.task.description}</dd>
-                    <dt>Created At:</dt>
-                    <dd>#{viewTaskAction.task.createdDate}</dd>
-                    <dt>Last Modified At:</dt>
-                    <dd>#{viewTaskAction.task.lastModifiedDate}</dd>
-                </dl>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-12 text-end mt-3">
-                <h:link outcome="/tasks.xhtml" class="btn btn-primary btn-lg btn-outline">Back to Task List</h:link>
+        <div class="row justify-content-center">
+            <div class="col-lg-10 col-md-12">
+                <div class="detail-card">
+                    <div class="d-flex align-items-center justify-content-between mb-4 border-bottom pb-3">
+                        <h2 class="h3 font-heading mb-0 text-slate-800">
+                            Task ##{viewTaskAction.task.id}
+                        </h2>
+                        <span class="status-badge #{viewTaskAction.task.status.toString().toLowerCase()}">
+                            <i class="bi #{viewTaskAction.task.status.toString() == 'TODO' ? 'bi-list-task' : (viewTaskAction.task.status.toString() == 'DOING' ? 'bi-hourglass-split' : 'bi-check2-square')}"></i>
+                            #{viewTaskAction.task.status}
+                        </span>
+                    </div>
+
+                    <div class="detail-row">
+                        <div class="detail-label">
+                            <i class="bi bi-type text-primary"></i>Task Name
+                        </div>
+                        <div class="detail-value text-main font-heading fw-semibold fs-5">
+                            #{viewTaskAction.task.name}
+                        </div>
+                    </div>
+
+                    <div class="detail-row">
+                        <div class="detail-label">
+                            <i class="bi bi-justify-left text-primary"></i>Description
+                        </div>
+                        <div class="detail-value text-muted" style="line-height: 1.6;">
+                            #{viewTaskAction.task.description}
+                        </div>
+                    </div>
+
+                    <div class="detail-row">
+                        <div class="detail-label">
+                            <i class="bi bi-calendar-plus text-primary"></i>Created Date
+                        </div>
+                        <div class="detail-value">
+                            <h:outputText value="#{viewTaskAction.task.createdDate}">
+                                <f:convertDateTime type="localDateTime" pattern="yyyy-MM-dd HH:mm"/>
+                            </h:outputText>
+                        </div>
+                    </div>
+
+                    <div class="detail-row">
+                        <div class="detail-label">
+                            <i class="bi bi-calendar-event text-primary"></i>Last Modified
+                        </div>
+                        <div class="detail-value">
+                            <h:outputText value="#{viewTaskAction.task.lastModifiedDate}">
+                                <f:convertDateTime type="localDateTime" pattern="yyyy-MM-dd HH:mm"/>
+                            </h:outputText>
+                        </div>
+                    </div>
+
+                    <div class="d-flex justify-content-between mt-5 pt-3 border-top gap-3">
+                        <a jsf:outcome="/tasks.xhtml" class="btn btn-outline-secondary">
+                            <i class="bi bi-arrow-left"></i>Back to Task List
+                        </a>
+                        <a jsf:outcome="/form.xhtml" class="btn btn-primary">
+                            <f:param name="id" value="#{viewTaskAction.task.id}"></f:param>
+                            <i class="bi bi-pencil"></i>Edit Task
+                        </a>
+                    </div>
+                </div>
             </div>
         </div>
     </ui:define>
 </ui:composition>
-

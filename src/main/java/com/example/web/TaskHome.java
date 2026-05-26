@@ -1,5 +1,6 @@
 package com.example.web;
 
+import com.example.domain.Status;
 import com.example.domain.Task;
 import com.example.domain.TaskNotFoundException;
 import com.example.domain.TaskRepository;
@@ -58,12 +59,12 @@ public class TaskHome implements Serializable {
 
     private void retrieveAllTasks() {
         LOGGER.log(Level.INFO, "retriveing all tasks...");
-        this.todotasks = findTasksByStatus(Task.Status.TODO);
-        this.doingtasks = findTasksByStatus(Task.Status.DOING);
-        this.donetasks = findTasksByStatus(Task.Status.DONE);
+        this.todotasks = findTasksByStatus(Status.TODO);
+        this.doingtasks = findTasksByStatus(Status.DOING);
+        this.donetasks = findTasksByStatus(Status.DONE);
     }
 
-    private List<TaskDetails> findTasksByStatus(Task.Status status) {
+    private List<TaskDetails> findTasksByStatus(Status status) {
         List<TaskDetails> taskList = new ArrayList<>();
         List<Task> tasks = taskRepository.findByStatus(status);
 
@@ -102,7 +103,7 @@ public class TaskHome implements Serializable {
 
         Task task = taskRepository.findOptionalById(id)
                 .orElseThrow(() -> new TaskNotFoundException(id));
-        task.setStatus(Task.Status.DOING);
+        task.setStatus(Status.DOING);
         taskRepository.update(task);
 
         // retrieve all tasks
@@ -114,7 +115,7 @@ public class TaskHome implements Serializable {
 
         Task task = taskRepository.findOptionalById(id)
                 .orElseThrow(() -> new TaskNotFoundException(id));
-        task.setStatus(Task.Status.DONE);
+        task.setStatus(Status.DONE);
         taskRepository.update(task);
 
         // retrieve all tasks

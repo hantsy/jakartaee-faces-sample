@@ -1,5 +1,6 @@
 package com.example;
 
+import com.example.domain.Status;
 import com.example.domain.Task;
 import com.example.domain.TaskRepository;
 import jakarta.enterprise.context.ApplicationScoped;
@@ -12,12 +13,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.stream.Stream;
 
-/**
- *
- * @author hantsy
- */
-// see: https://github.com/jakartaee/transactions/issues/235
-// Not a problem in the GlassFish 8.0.0/WildFly 39+
+
 @ApplicationScoped
 @Transactional
 public class Bootstrap {
@@ -36,7 +32,7 @@ public class Bootstrap {
                     Task task = new Task();
                     task.setName("My " + s + " task");
                     task.setDescription("The description of my " + s + " task");
-                    task.setStatus(Task.Status.TODO);
+                    task.setStatus(Status.TODO);
                     return task;
                 })
                 .map(data -> taskRepository.save(data))
