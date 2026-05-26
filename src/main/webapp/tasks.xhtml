@@ -11,7 +11,7 @@
     </ui:define>
     <ui:define name="pageTitle">Taskboard Dashboard</ui:define>
     <ui:define name="content">
-        <form jsf:id="tasksForm">
+        <form jsf:id="tasksForm" role="form" class="form" jsf:prependId="false">
             <div class="row">
                 <!-- TODO COLUMN -->
                 <div class="col-lg-4 board-column todo-column">
@@ -26,7 +26,7 @@
                         <div class="board-card-body">
                             <p class="mb-3 text-muted small">Tasks newly added and waiting to be started.</p>
                             
-                            <ul jsf:id="todotasks-list" jsf:rendered="#{not empty taskHome.todotasks}" class="list-unstyled p-0 m-0">
+                            <ul jsf:id="todotasks" jsf:rendered="#{not empty taskHome.todotasks}" class="list-unstyled p-0 m-0">
                                 <ui:repeat var="task" value="#{taskHome.todotasks}">
                                     <li class="task-item">
                                         <div class="task-header">
@@ -78,7 +78,7 @@
                         <div class="board-card-body">
                             <p class="mb-3 text-muted small">Tasks that are currently active and being worked on.</p>
                             
-                            <ul jsf:id="doingtasks-list" jsf:rendered="#{not empty taskHome.doingtasks}" class="list-unstyled p-0 m-0">
+                            <ul jsf:id="doingtasks" jsf:rendered="#{not empty taskHome.doingtasks}" class="list-unstyled p-0 m-0">
                                 <ui:repeat var="task" value="#{taskHome.doingtasks}">
                                     <li class="task-item">
                                         <div class="task-header">
@@ -130,7 +130,7 @@
                         <div class="board-card-body">
                             <p class="mb-3 text-muted small">Tasks that have been successfully finished.</p>
                             
-                            <ul jsf:id="donetasks-list" jsf:rendered="#{not empty taskHome.donetasks}" class="list-unstyled p-0 m-0">
+                            <ul jsf:id="donetasks" jsf:rendered="#{not empty taskHome.donetasks}" class="list-unstyled p-0 m-0">
                                 <ui:repeat var="task" value="#{taskHome.donetasks}">
                                     <li class="task-item">
                                         <div class="task-header">

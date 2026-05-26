@@ -69,13 +69,13 @@ public class HomeScreenTest {
     @Drone
     private WebDriver browser;
 
-    @FindBy(id = "todotasks-list")
+    @FindBy(id = "todotasks")
     private WebElement todotasks;
 
-    @FindBy(id = "doingtasks-list")
+    @FindBy(id = "doingtasks")
     private WebElement doingtasks;
 
-    @FindBy(id = "donetasks-list")
+    @FindBy(id = "donetasks")
     private WebElement donetasks;
 
     @Test
@@ -83,18 +83,26 @@ public class HomeScreenTest {
         final String url = deploymentUrl.toExternalForm();
         LOGGER.log(Level.INFO, "deploymentUrl:{0}", url);
         this.browser.get(url + "/tasks.xhtml");
-        assertEquals(2, todotasks.findElements(By.cssSelector("li.list-group-item")).size());
-        assertTrue(doingtasks.findElements(By.cssSelector("li.list-group-item")).isEmpty());
-        assertTrue(donetasks.findElements(By.cssSelector("li.list-group-item")).isEmpty());
-        List<WebElement> todoTasksWebElements = todotasks.findElements(By.cssSelector("li.list-group-item"));
-        if (!todoTasksWebElements.isEmpty()) {
-            WebElement buttonElement = todoTasksWebElements.get(0).findElement(By.cssSelector("a.btn"));
-            Graphene.guardHttp(buttonElement).click();
 
-            Graphene.waitGui();
+        // todo item list
+        List<WebElement> todoTasksWebElements = todotasks.findElements(By.cssSelector("li.task-item"));
 
-            assertEquals(1, todotasks.findElements(By.cssSelector("li.list-group-item")).size());
-            assertEquals(1, doingtasks.findElements(By.cssSelector("li.list-group-item")).size());
-        }
+        // in the initial status, contains 2 todo tasks
+        assertEquals(2, todoTasksWebElements.size());
+        assertTrue(doingtasks.findElements(By.cssSelector("li.task-item")).isEmpty());
+        assertTrue(donetasks.findElements(By.cssSelector("li.task-item")).isEmpty());
+
+        // locate the Start button of the first TODO task
+        WebElement buttonElement = todoTasksWebElements.getFirst().findElement(By.cssSelector(".task-actions .btn"));
+
+        //click the Start button
+        Graphene.guardHttp(buttonElement).click();
+
+        // wait the GUI ready
+        Graphene.waitGui();
+
+        // verify the TODO task is moved to the DOING column
+        assertEquals(1, todotasks.findElements(By.cssSelector("li.task-item")).size());
+        assertEquals(1, doingtasks.findElements(By.cssSelector("li.task-item")).size());
     }
 }

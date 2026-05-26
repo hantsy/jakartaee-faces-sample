@@ -31,15 +31,15 @@ public class HomePageObject {
     private WebElement donetasks;
 
     public void assertTodoTasksSize(int size) {
-        assertEquals(todotasks.findElements(By.cssSelector("li.list-group-item")).size(), size);
+        assertEquals(todotasks.findElements(By.cssSelector("li.task-item")).size(), size);
     }
 
     public void assertDoingTasksSize(int size) {
-        assertEquals(doingtasks.findElements(By.cssSelector("li.list-group-item")).size(), size);
+        assertEquals(doingtasks.findElements(By.cssSelector("li.task-item")).size(), size);
     }
 
     public void assertDoneTasksSize(int size) {
-        assertEquals(donetasks.findElements(By.cssSelector("li.list-group-item")).size(), size);
+        assertEquals(donetasks.findElements(By.cssSelector("li.task-item")).size(), size);
     }    
     
 }
