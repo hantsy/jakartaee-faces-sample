@@ -43,7 +43,7 @@
         <eclipselink.version>5.0.0</eclipselink.version>
 
         <!-- tests -->
-        <junit.version>6.0.3</junit.version>
+        <junit.version>6.1.0</junit.version>
         <mockito.version>5.23.0</mockito.version>
         <hamcrest.version>3.0</hamcrest.version>
         <awaitility.version>4.3.0</awaitility.version>
