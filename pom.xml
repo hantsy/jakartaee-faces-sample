@@ -40,7 +40,7 @@
         <glassfish.version>8.0.2</glassfish.version>
         <arquillian-glassfish.version>7.0.14</arquillian-glassfish.version>
         <jersey.version>4.0.0</jersey.version>
-        <eclipselink.version>5.0.0</eclipselink.version>
+        <eclipselink.version>5.0.1</eclipselink.version>
 
         <!-- tests -->
         <junit.version>6.1.0</junit.version>
