@@ -1,11 +1,246 @@
-<!DOCTYPE html>
-<html>
-
+<!doctype html>
+<html lang="en">
 <head>
-    <meta http-equiv="refresh" content="0;url=tasks.xhtml"/>
-</head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
 
+    <title>Taskboard — A Jakarta Faces Example</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com"/>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous"/>
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;family=Outfit:wght@400;500;600;700;800&amp;display=swap"/>
+
+    <!-- Bootstrap 5 CSS -->
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css"/>
+
+    <style>
+        :root {
+            --font-heading: 'Outfit', sans-serif;
+            --font-body: 'Inter', sans-serif;
+            --primary: #14b8a6;
+            --primary-hover: #0f766e;
+            --primary-glow: rgba(20, 184, 166, 0.3);
+            --text-main: #0f172a;
+            --text-muted: #64748b;
+            --radius-md: 12px;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        html, body {
+            height: 100%;
+        }
+
+        body {
+            font-family: var(--font-body);
+            background: linear-gradient(135deg, #06b6d4 0%, #0d9488 25%, #10b981 50%, #14b8a6 75%, #0ea5e9 100%);
+            background-size: 400% 400%;
+            animation: gradientShift 15s ease infinite;
+            color: var(--text-main);
+            letter-spacing: -0.01em;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(ellipse at 20% 50%, rgba(13, 148, 136, 0.3) 0%, transparent 50%),
+                        radial-gradient(ellipse at 80% 20%, rgba(16, 185, 129, 0.25) 0%, transparent 50%),
+                        radial-gradient(ellipse at 50% 80%, rgba(6, 182, 212, 0.25) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        @keyframes gradientShift {
+            0%   { background-position: 0% 50%; }
+            50%  { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        #page-content {
+            flex: 1 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            border-radius: 24px;
+            padding: 3rem 3rem;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
+        }
+
+        .glass-card:hover {
+            background: rgba(255, 255, 255, 0.2);
+            box-shadow: 0 30px 60px -12px rgba(0, 0, 0, 0.2);
+        }
+
+        h1, h2, h3 {
+            font-family: var(--font-heading);
+        }
+
+        .hero-title {
+            font-weight: 800;
+            font-size: clamp(3rem, 8vw, 5rem);
+            background: linear-gradient(135deg, #ffffff, #ccfbf1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1.15;
+            text-shadow: none;
+        }
+
+        .hero-tagline {
+            font-family: var(--font-heading);
+            font-weight: 500;
+            font-size: 1.3rem;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .hero-subtitle {
+            font-size: 1.15rem;
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.7;
+        }
+
+        .hero-subtitle strong {
+            color: rgba(255, 255, 255, 0.95);
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #14b8a6, #0f766e);
+            border: 1px solid rgba(20, 184, 166, 0.4);
+            color: #ffffff;
+            font-weight: 700;
+            padding: 0.85rem 2.5rem;
+            font-size: 1.1rem;
+            border-radius: var(--radius-md);
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            box-shadow: 0 4px 15px rgba(20, 184, 166, 0.3);
+        }
+
+        .btn-primary:hover, .btn-primary:focus {
+            background: linear-gradient(135deg, #0f766e, #115e59);
+            border-color: rgba(20, 184, 166, 0.6);
+            box-shadow: 0 6px 20px rgba(20, 184, 166, 0.45);
+            transform: translateY(-2px);
+        }
+
+        .btn-outline-secondary {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            color: rgba(255, 255, 255, 0.9);
+            font-weight: 600;
+            padding: 0.85rem 2.5rem;
+            font-size: 1.1rem;
+            border-radius: var(--radius-md);
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            backdrop-filter: blur(10px);
+        }
+
+        .btn-outline-secondary:hover {
+            background: rgba(255, 255, 255, 0.2);
+            border-color: rgba(255, 255, 255, 0.5);
+            color: #ffffff;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        footer {
+            flex-shrink: none;
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            z-index: 1;
+        }
+
+        footer,
+        footer .text-muted {
+            color: rgba(255, 255, 255, 0.7) !important;
+        }
+
+        footer a {
+            transition: var(--transition);
+            color: rgba(255, 255, 255, 0.8) !important;
+        }
+
+        footer a:hover {
+            color: #ffffff !important;
+            transform: scale(1.15);
+        }
+    </style>
+</head>
 <body>
+
+    <div id="page-content">
+        <div class="container text-center">
+            <div class="row justify-content-center">
+                <div class="col-lg-10">
+                    <div class="glass-card">
+                        <h1 class="hero-title mb-4">Taskboard</h1>
+                        <h2 class="hero-tagline mb-4">A Jakarta Faces Example</h2>
+                        <p class="hero-subtitle mx-auto mb-5">
+                            Jakarta Faces is the standard <strong>component-based</strong> MVC framework
+                            for the Jakarta EE platform. It provides a rich set of <strong>UI components</strong>,
+                            server-side <strong>state management</strong>, event handling, input validation,
+                            and page navigation via <strong>Facelets</strong>, with built-in support for
+                            internationalization and accessibility.
+                        </p>
+                        <div class="d-flex justify-content-center gap-3 flex-wrap">
+                            <a class="btn btn-primary" href="tasks.xhtml">
+                                <i class="bi bi-kanban"></i> Launch Demo App
+                            </a>
+                            <a class="btn btn-outline-secondary" href="https://jakarta.ee/specifications/faces/" target="_blank" rel="noopener">
+                                <i class="bi bi-journal-text"></i> Faces Specification
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="mt-auto py-4">
+        <div class="container">
+            <div class="d-flex flex-column flex-md-row justify-content-between align-items-center gap-3">
+                <div>
+                    <span class="text-muted">© 2026 <strong>Taskboard</strong>. Designed by </span>
+                    <a href="mailto:hantsy@gmail.com" class="text-decoration-none text-secondary fw-semibold">Hantsy Bai</a>
+                </div>
+                <div class="d-flex align-items-center gap-1">
+                    <a class="text-muted mx-2" href="https://x.com/hantsy" target="_blank" rel="noopener noreferrer" aria-label="X @hantsy"><i class="bi bi-twitter-x fs-5"></i></a>
+                    <a class="text-muted mx-2" href="https://github.com/hantsy" target="_blank" rel="noopener noreferrer" aria-label="GitHub @hantsy"><i class="bi bi-github fs-5"></i></a>
+                    <a class="text-muted mx-2" href="https://www.linkedin.com/in/hantsy" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn hantsy"><i class="bi bi-linkedin fs-5"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
-
