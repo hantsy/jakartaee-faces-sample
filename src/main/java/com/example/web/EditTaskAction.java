@@ -77,6 +77,7 @@ public class EditTaskAction implements Serializable {
         }
         FacesMessage info = new FacesMessage( "Task is saved successfully!");
         facesContext.addMessage(null, info);
+        facesContext.getExternalContext().getFlash().setKeepMessages(true);
 
         return "/tasks.xhtml?faces-redirect=true";
     }

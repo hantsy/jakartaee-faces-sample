@@ -388,6 +388,7 @@ main > .container {
     font-size: 1rem;
     color: var(--text-main);
     font-weight: 500;
+    line-height: 1.6;
 }
 
 .status-badge {

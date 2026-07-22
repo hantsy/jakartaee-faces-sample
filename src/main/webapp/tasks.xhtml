@@ -11,7 +11,7 @@
     </ui:define>
     <ui:define name="pageTitle">Taskboard Dashboard</ui:define>
     <ui:define name="content">
-        <form jsf:id="tasksForm" role="form" class="form" jsf:prependId="false">
+        <form jsf:id="tasksForm" role="form" class="form">
             <div class="row">
                 <!-- TODO COLUMN -->
                 <div class="col-lg-4 board-column todo-column">
@@ -48,7 +48,7 @@
                                         <p class="task-description">#{task.description}</p>
                                         <div class="task-actions">
                                             <span class="status-badge todo">Todo</span>
-                                            <button jsf:action="#{taskHome.markTaskDoing(task.id)}"
+                                            <button jsf:id="markTaskDoing" jsf:action="#{taskHome.markTaskDoing(task.id)}"
                                                     class="btn btn-sm btn-success">
                                                 <i class="bi bi-play-fill"></i>Start
                                             </button>
@@ -100,7 +100,7 @@
                                         <p class="task-description">#{task.description}</p>
                                         <div class="task-actions">
                                             <span class="status-badge doing">Doing</span>
-                                            <button jsf:action="#{taskHome.markTaskDone(task.id)}"
+                                            <button jsf:id="markTaskDone" jsf:action="#{taskHome.markTaskDone(task.id)}"
                                                     class="btn btn-sm btn-info">
                                                 <i class="bi bi-check-circle-fill"></i>Complete
                                             </button>
@@ -152,7 +152,7 @@
                                         <p class="task-description">#{task.description}</p>
                                         <div class="task-actions">
                                             <span class="status-badge done">Done</span>
-                                            <button jsf:action="#{taskHome.deleteTask(task.id)}"
+                                            <button jsf:id="deleteTask" jsf:action="#{taskHome.deleteTask(task.id)}"
                                                     class="btn btn-sm btn-danger">
                                                 <i class="bi bi-trash"></i>Delete
                                             </button>

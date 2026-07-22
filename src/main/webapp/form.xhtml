@@ -5,11 +5,13 @@
                 xmlns:h="jakarta.faces.html"
                 template="/WEB-INF/layout/template.xhtml">
 
-    <f:metadata>
-        <f:viewParam name="id" value="#{editTaskAction.taskId}">
-        </f:viewParam>
-        <f:viewAction action="#{editTaskAction.init()}"/>
-    </f:metadata>
+    <ui:define name="metadata">
+        <f:metadata>
+            <f:viewParam name="id" value="#{editTaskAction.taskId}">
+            </f:viewParam>
+            <f:viewAction action="#{editTaskAction.init()}"/>
+        </f:metadata>
+    </ui:define>
 
     <ui:define name="pageTitle">
         <span jsf:rendered="#{empty editTaskAction.task.id}">Create Task</span>

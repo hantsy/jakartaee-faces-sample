@@ -19,7 +19,6 @@
     </application>
 
     <lifecycle>
-        <phase-listener>com.example.config.MessageHandler</phase-listener>
         <phase-listener>com.example.config.RequestLoggingPhaseListener</phase-listener>
     </lifecycle>
 </faces-config>
