@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:jsf="jakarta.faces"
+      xmlns:faces="jakarta.faces"
       xmlns:ui="jakarta.faces.facelets"
       xmlns:f="jakarta.faces.core"
       xmlns:h="jakarta.faces.html">
 <f:view contentType="text/html" encoding="UTF-8">
     <ui:insert name="metadata"></ui:insert>
-    <head jsf:id="head">
+    <head faces:id="head">
         <title>Taskboard - A Jakarta EE Faces Example</title>
         <!-- Required meta tags -->
         <meta charset="utf-8"></meta>
@@ -21,7 +21,7 @@
         <ui:insert name="headIncludes"></ui:insert>
     </head>
 
-    <body jsf:id="body" class="d-flex flex-column h-100">
+    <body faces:id="body" class="d-flex flex-column h-100">
         <header class="header">
             <ui:include src="/WEB-INF/layout/header.xhtml"/>
         </header>

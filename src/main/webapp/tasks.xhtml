@@ -1,5 +1,5 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
-                xmlns:jsf="jakarta.faces"
+                xmlns:faces="jakarta.faces"
                 xmlns:ui="jakarta.faces.facelets"
                 xmlns:f="jakarta.faces.core"
                 template="/WEB-INF/layout/template.xhtml">
@@ -18,7 +18,7 @@
                         <i class="bi bi-list-task fs-5"></i>
                         <span>Backlog / To Do</span>
                         <span class="badge badge-todo ms-auto rounded-pill"
-                              jsf:rendered="#{not empty taskHome.todotasks}">
+                              faces:rendered="#{not empty taskHome.todotasks}">
                             #{taskHome.todotasks.size()}
                         </span>
                     </div>
@@ -26,7 +26,7 @@
                         <p class="mb-3 text-muted small">Tasks newly added and waiting to be started.</p>
 
                         <ui:fragment rendered="#{not empty taskHome.todotasks}">
-                            <form jsf:id="todoForm" jsf:prependId="false">
+                            <form faces:id="todoForm" faces:prependId="false">
                                 <ul class="list-unstyled p-0 m-0">
                                     <ui:repeat var="task" value="#{taskHome.todotasks}">
                                         <li class="task-item">
@@ -36,12 +36,12 @@
                                                     <h4 class="task-title">#{task.name}</h4>
                                                 </div>
                                                 <div class="task-actions-right">
-                                                    <a jsf:outcome="/details.xhtml" class="btn-link-action"
+                                                    <a faces:outcome="/details.xhtml" class="btn-link-action"
                                                        title="View Details">
                                                         <f:param name="id" value="#{task.id}"></f:param>
                                                         <i class="bi bi-eye"></i>
                                                     </a>
-                                                    <a jsf:outcome="/form.xhtml" class="btn-link-action"
+                                                    <a faces:outcome="/form.xhtml" class="btn-link-action"
                                                        title="Edit Task">
                                                         <f:param name="id" value="#{task.id}"></f:param>
                                                         <i class="bi bi-pencil"></i>
@@ -51,8 +51,8 @@
                                             <p class="task-description">#{task.description}</p>
                                             <div class="task-actions">
                                                 <span class="status-badge todo">Todo</span>
-                                                <button jsf:id="markTaskDoing"
-                                                        jsf:action="#{taskHome.markTaskDoing(task.id)}"
+                                                <button faces:id="markTaskDoing"
+                                                        faces:action="#{taskHome.markTaskDoing(task.id)}"
                                                         class="btn btn-sm btn-success">
                                                     <i class="bi bi-play-fill"></i>Start
                                                 </button>
@@ -63,7 +63,7 @@
                             </form>
                         </ui:fragment>
 
-                        <div jsf:rendered="#{empty taskHome.todotasks}" class="text-center py-4 text-muted">
+                        <div faces:rendered="#{empty taskHome.todotasks}" class="text-center py-4 text-muted">
                             <i class="bi bi-inbox fs-2 d-block mb-2 opacity-50"></i>
                             <span class="small">No tasks in backlog</span>
                         </div>
@@ -78,7 +78,7 @@
                         <i class="bi bi-hourglass-split fs-5"></i>
                         <span>Work In Progress</span>
                         <span class="badge badge-doing ms-auto rounded-pill"
-                              jsf:rendered="#{not empty taskHome.doingtasks}">
+                              faces:rendered="#{not empty taskHome.doingtasks}">
                             #{taskHome.doingtasks.size()}
                         </span>
                     </div>
@@ -86,7 +86,7 @@
                         <p class="mb-3 text-muted small">Tasks that are currently active and being worked on.</p>
 
                         <ui:fragment rendered="#{not empty taskHome.doingtasks}">
-                            <form jsf:id="doingForm" jsf:prependId="false">
+                            <form faces:id="doingForm" faces:prependId="false">
                                 <ul class="list-unstyled p-0 m-0">
                                     <ui:repeat var="task" value="#{taskHome.doingtasks}">
                                         <li class="task-item">
@@ -96,12 +96,12 @@
                                                     <h4 class="task-title">#{task.name}</h4>
                                                 </div>
                                                 <div class="task-actions-right">
-                                                    <a jsf:outcome="/details.xhtml" class="btn-link-action"
+                                                    <a faces:outcome="/details.xhtml" class="btn-link-action"
                                                        title="View Details">
                                                         <f:param name="id" value="#{task.id}"></f:param>
                                                         <i class="bi bi-eye"></i>
                                                     </a>
-                                                    <a jsf:outcome="/form.xhtml" class="btn-link-action"
+                                                    <a faces:outcome="/form.xhtml" class="btn-link-action"
                                                        title="Edit Task">
                                                         <f:param name="id" value="#{task.id}"></f:param>
                                                         <i class="bi bi-pencil"></i>
@@ -111,8 +111,8 @@
                                             <p class="task-description">#{task.description}</p>
                                             <div class="task-actions">
                                                 <span class="status-badge doing">Doing</span>
-                                                <button jsf:id="markTaskDone"
-                                                        jsf:action="#{taskHome.markTaskDone(task.id)}"
+                                                <button faces:id="markTaskDone"
+                                                        faces:action="#{taskHome.markTaskDone(task.id)}"
                                                         class="btn btn-sm btn-info">
                                                     <i class="bi bi-check-circle-fill"></i>Complete
                                                 </button>
@@ -122,7 +122,7 @@
                                 </ul>
                             </form>
                         </ui:fragment>
-                        <div jsf:rendered="#{empty taskHome.doingtasks}" class="text-center py-4 text-muted">
+                        <div faces:rendered="#{empty taskHome.doingtasks}" class="text-center py-4 text-muted">
                             <i class="bi bi-clipboard-plus fs-2 d-block mb-2 opacity-50"></i>
                             <span class="small">No tasks currently in progress</span>
                         </div>
@@ -137,7 +137,7 @@
                         <i class="bi bi-check2-square fs-5"></i>
                         <span>Completed Tasks</span>
                         <span class="badge badge-done ms-auto rounded-pill"
-                              jsf:rendered="#{not empty taskHome.donetasks}">
+                              faces:rendered="#{not empty taskHome.donetasks}">
                             #{taskHome.donetasks.size()}
                         </span>
                     </div>
@@ -145,7 +145,7 @@
                         <p class="mb-3 text-muted small">Tasks that have been successfully finished.</p>
 
                         <ui:fragment rendered="#{not empty taskHome.donetasks}">
-                            <form jsf:id="doneForm" jsf:prependId="false">
+                            <form faces:id="doneForm" faces:prependId="false">
                                 <ul class="list-unstyled p-0 m-0">
                                     <ui:repeat var="task" value="#{taskHome.donetasks}">
                                         <li class="task-item">
@@ -155,12 +155,12 @@
                                                     <h4 class="task-title">#{task.name}</h4>
                                                 </div>
                                                 <div class="task-actions-right">
-                                                    <a jsf:outcome="/details.xhtml" class="btn-link-action"
+                                                    <a faces:outcome="/details.xhtml" class="btn-link-action"
                                                        title="View Details">
                                                         <f:param name="id" value="#{task.id}"></f:param>
                                                         <i class="bi bi-eye"></i>
                                                     </a>
-                                                    <a jsf:outcome="/form.xhtml" class="btn-link-action"
+                                                    <a faces:outcome="/form.xhtml" class="btn-link-action"
                                                        title="Edit Task">
                                                         <f:param name="id" value="#{task.id}"></f:param>
                                                         <i class="bi bi-pencil"></i>
@@ -170,7 +170,7 @@
                                             <p class="task-description">#{task.description}</p>
                                             <div class="task-actions">
                                                 <span class="status-badge done">Done</span>
-                                                <button jsf:id="deleteTask" jsf:action="#{taskHome.deleteTask(task.id)}"
+                                                <button faces:id="deleteTask" faces:action="#{taskHome.deleteTask(task.id)}"
                                                         class="btn btn-sm btn-danger">
                                                     <i class="bi bi-trash"></i>Delete
                                                 </button>
@@ -181,7 +181,7 @@
                             </form>
                         </ui:fragment>
 
-                        <div jsf:rendered="#{empty taskHome.donetasks}" class="text-center py-4 text-muted">
+                        <div faces:rendered="#{empty taskHome.donetasks}" class="text-center py-4 text-muted">
                             <i class="bi bi-check2-all fs-2 d-block mb-2 opacity-50"></i>
                             <span class="small">No completed tasks yet</span>
                         </div>

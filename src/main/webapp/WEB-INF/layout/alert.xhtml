@@ -1,9 +1,9 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
-                xmlns:jsf="jakarta.faces"
+                xmlns:faces="jakarta.faces"
                 xmlns:ui="jakarta.faces.facelets"
 >
-    <div jsf:id="alerts-container"
-         jsf:rendered="#{not facesContext.validationFailed and not empty facesContext.messageList}">
+    <div faces:id="alerts-container"
+         faces:rendered="#{not facesContext.validationFailed and not empty facesContext.messageList}">
         <ui:repeat var="message" value="#{facesContext.messageList}">
             <div class="alert alert-dismissible fade show #{message.severity.ordinal==0?'alert-success':(message.severity.ordinal==1?'alert-warning':'alert-danger')} d-flex align-items-center justify-content-between"
                  role="alert">

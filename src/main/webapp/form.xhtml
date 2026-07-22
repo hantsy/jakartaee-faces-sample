@@ -1,5 +1,5 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
-                xmlns:jsf="jakarta.faces"
+                xmlns:faces="jakarta.faces"
                 xmlns:ui="jakarta.faces.facelets"
                 xmlns:f="jakarta.faces.core"
                 xmlns:h="jakarta.faces.html"
@@ -14,8 +14,8 @@
     </ui:define>
 
     <ui:define name="pageTitle">
-        <span jsf:rendered="#{empty editTaskAction.task.id}">Create Task</span>
-        <span jsf:rendered="#{not empty editTaskAction.task.id}">Edit Task</span>
+        <span faces:rendered="#{empty editTaskAction.task.id}">Create Task</span>
+        <span faces:rendered="#{not empty editTaskAction.task.id}">Edit Task</span>
     </ui:define>
 
     <ui:define name="content">
@@ -24,7 +24,7 @@
                 <div class="form-card">
                     
                     <!-- Metadata for existing task -->
-                    <div jsf:rendered="#{not empty editTaskAction.task.id}" class="d-flex align-items-center gap-2 mb-4 pb-3 border-bottom">
+                    <div faces:rendered="#{not empty editTaskAction.task.id}" class="d-flex align-items-center gap-2 mb-4 pb-3 border-bottom">
                         <span class="badge bg-secondary py-2 px-3 fs-6 rounded-pill">ID: #{editTaskAction.task.id}</span>
                         <span class="status-badge #{editTaskAction.task.status.toString().toLowerCase()}">
                             <i class="bi #{editTaskAction.task.status.toString() == 'TODO' ? 'bi-list-task' : (editTaskAction.task.status.toString() == 'DOING' ? 'bi-hourglass-split' : 'bi-check2-square')}"></i>
@@ -32,15 +32,15 @@
                         </span>
                     </div>
 
-                    <form jsf:id="form" class="form">
+                    <form faces:id="form" class="form">
                         <div class="form-group">
-                            <label class="text-uppercase" jsf:for="name">Task Name</label>
+                            <label class="text-uppercase" faces:for="name">Task Name</label>
                             <input type="text"
-                                   jsf:id="name"
+                                   faces:id="name"
                                    class="form-control #{not empty facesContext.getMessageList('form:name')?'is-invalid':''}"
-                                   jsf:value="#{editTaskAction.task.name}"
-                                   jsf:required="true"
-                                   jsf:requiredMessage="Task name is required."
+                                   faces:value="#{editTaskAction.task.name}"
+                                   faces:required="true"
+                                   faces:requiredMessage="Task name is required."
                                    placeholder="What needs to be done?">
                             </input>
                             <span class="invalid-feedback">
@@ -49,13 +49,13 @@
                         </div>
 
                         <div class="form-group">
-                            <label class="text-uppercase" jsf:for="description">Task Description</label>
-                            <textarea jsf:id="description"
+                            <label class="text-uppercase" faces:for="description">Task Description</label>
+                            <textarea faces:id="description"
                                       class="form-control #{not empty facesContext.getMessageList('form:description')?'is-invalid':''}"
                                       rows="6"
-                                      jsf:value="#{editTaskAction.task.description}"
-                                      jsf:required="true"
-                                      jsf:requiredMessage="Description is required."
+                                      faces:value="#{editTaskAction.task.description}"
+                                      faces:required="true"
+                                      faces:requiredMessage="Description is required."
                                       placeholder="Add some details about this task..."/>
                             <span class="invalid-feedback">
                                 <h:message for="description" showDetail="false" showSummary="true"/>
@@ -63,12 +63,12 @@
                         </div>
 
                         <div class="d-flex align-items-center gap-3 mt-4 pt-3 border-top">
-                            <button jsf:id="submitTask" type="submit"
-                                    jsf:action="#{editTaskAction.save()}" 
+                            <button faces:id="submitTask" type="submit"
+                                    faces:action="#{editTaskAction.save()}" 
                                     class="btn btn-primary btn-lg">
                                 <i class="bi bi-save"></i>Save Task
                             </button>
-                            <a jsf:outcome="/tasks.xhtml" class="btn btn-outline-secondary btn-lg">
+                            <a faces:outcome="/tasks.xhtml" class="btn btn-outline-secondary btn-lg">
                                 <i class="bi bi-x-lg"></i>Cancel
                             </a>
                         </div>
