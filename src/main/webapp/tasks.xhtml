@@ -11,21 +11,21 @@
     </ui:define>
     <ui:define name="pageTitle">Taskboard Dashboard</ui:define>
     <ui:define name="content">
-        <form jsf:id="tasksForm" role="form" class="form" jsf:prependId="false">
-            <div class="row">
-                <!-- TODO COLUMN -->
-                <div class="col-lg-4 board-column todo-column">
-                    <div class="board-card">
-                        <div class="board-card-header">
-                            <i class="bi bi-list-task fs-5"></i>
-                            <span>Backlog / To Do</span>
-                            <span class="badge badge-todo ms-auto rounded-pill" jsf:rendered="#{not empty taskHome.todotasks}">
-                                #{taskHome.todotasks.size()}
-                            </span>
-                        </div>
-                        <div class="board-card-body">
-                            <p class="mb-3 text-muted small">Tasks newly added and waiting to be started.</p>
-                            
+        <div class="row">
+            <!-- TODO COLUMN -->
+            <div class="col-lg-4 board-column todo-column">
+                <div class="board-card">
+                    <div class="board-card-header">
+                        <i class="bi bi-list-task fs-5"></i>
+                        <span>Backlog / To Do</span>
+                        <span class="badge badge-todo ms-auto rounded-pill" jsf:rendered="#{not empty taskHome.todotasks}">
+                            #{taskHome.todotasks.size()}
+                        </span>
+                    </div>
+                    <div class="board-card-body">
+                        <p class="mb-3 text-muted small">Tasks newly added and waiting to be started.</p>
+
+                        <form jsf:id="todoForm" jsf:prependId="false">
                             <ul jsf:id="todotasks" jsf:rendered="#{not empty taskHome.todotasks}" class="list-unstyled p-0 m-0">
                                 <ui:repeat var="task" value="#{taskHome.todotasks}">
                                     <li class="task-item">
@@ -56,28 +56,30 @@
                                     </li>
                                 </ui:repeat>
                             </ul>
-                            
-                            <div jsf:rendered="#{empty taskHome.todotasks}" class="text-center py-4 text-muted">
-                                <i class="bi bi-inbox fs-2 d-block mb-2 opacity-50"></i>
-                                <span class="small">No tasks in backlog</span>
-                            </div>
+                        </form>
+
+                        <div jsf:rendered="#{empty taskHome.todotasks}" class="text-center py-4 text-muted">
+                            <i class="bi bi-inbox fs-2 d-block mb-2 opacity-50"></i>
+                            <span class="small">No tasks in backlog</span>
                         </div>
                     </div>
                 </div>
+            </div>
 
-                <!-- WIP COLUMN -->
-                <div class="col-lg-4 board-column doing-column" id="doingtasks">
-                    <div class="board-card">
-                        <div class="board-card-header">
-                            <i class="bi bi-hourglass-split fs-5"></i>
-                            <span>Work In Progress</span>
-                            <span class="badge badge-doing ms-auto rounded-pill" jsf:rendered="#{not empty taskHome.doingtasks}">
-                                #{taskHome.doingtasks.size()}
-                            </span>
-                        </div>
-                        <div class="board-card-body">
-                            <p class="mb-3 text-muted small">Tasks that are currently active and being worked on.</p>
-                            
+            <!-- WIP COLUMN -->
+            <div class="col-lg-4 board-column doing-column">
+                <div class="board-card">
+                    <div class="board-card-header">
+                        <i class="bi bi-hourglass-split fs-5"></i>
+                        <span>Work In Progress</span>
+                        <span class="badge badge-doing ms-auto rounded-pill" jsf:rendered="#{not empty taskHome.doingtasks}">
+                            #{taskHome.doingtasks.size()}
+                        </span>
+                    </div>
+                    <div class="board-card-body">
+                        <p class="mb-3 text-muted small">Tasks that are currently active and being worked on.</p>
+
+                        <form jsf:id="doingForm" jsf:prependId="false">
                             <ul jsf:id="doingtasks" jsf:rendered="#{not empty taskHome.doingtasks}" class="list-unstyled p-0 m-0">
                                 <ui:repeat var="task" value="#{taskHome.doingtasks}">
                                     <li class="task-item">
@@ -108,28 +110,30 @@
                                     </li>
                                 </ui:repeat>
                             </ul>
-                            
-                            <div jsf:rendered="#{empty taskHome.doingtasks}" class="text-center py-4 text-muted">
-                                <i class="bi bi-clipboard-plus fs-2 d-block mb-2 opacity-50"></i>
-                                <span class="small">No tasks currently in progress</span>
-                            </div>
+                        </form>
+
+                        <div jsf:rendered="#{empty taskHome.doingtasks}" class="text-center py-4 text-muted">
+                            <i class="bi bi-clipboard-plus fs-2 d-block mb-2 opacity-50"></i>
+                            <span class="small">No tasks currently in progress</span>
                         </div>
                     </div>
                 </div>
+            </div>
 
-                <!-- DONE COLUMN -->
-                <div class="col-lg-4 board-column done-column" id="donetasks">
-                    <div class="board-card">
-                        <div class="board-card-header">
-                            <i class="bi bi-check2-square fs-5"></i>
-                            <span>Completed Tasks</span>
-                            <span class="badge badge-done ms-auto rounded-pill" jsf:rendered="#{not empty taskHome.donetasks}">
-                                #{taskHome.donetasks.size()}
-                            </span>
-                        </div>
-                        <div class="board-card-body">
-                            <p class="mb-3 text-muted small">Tasks that have been successfully finished.</p>
-                            
+            <!-- DONE COLUMN -->
+            <div class="col-lg-4 board-column done-column">
+                <div class="board-card">
+                    <div class="board-card-header">
+                        <i class="bi bi-check2-square fs-5"></i>
+                        <span>Completed Tasks</span>
+                        <span class="badge badge-done ms-auto rounded-pill" jsf:rendered="#{not empty taskHome.donetasks}">
+                            #{taskHome.donetasks.size()}
+                        </span>
+                    </div>
+                    <div class="board-card-body">
+                        <p class="mb-3 text-muted small">Tasks that have been successfully finished.</p>
+
+                        <form jsf:id="doneForm" jsf:prependId="false">
                             <ul jsf:id="donetasks" jsf:rendered="#{not empty taskHome.donetasks}" class="list-unstyled p-0 m-0">
                                 <ui:repeat var="task" value="#{taskHome.donetasks}">
                                     <li class="task-item">
@@ -160,15 +164,15 @@
                                     </li>
                                 </ui:repeat>
                             </ul>
-                            
-                            <div jsf:rendered="#{empty taskHome.donetasks}" class="text-center py-4 text-muted">
-                                <i class="bi bi-check2-all fs-2 d-block mb-2 opacity-50"></i>
-                                <span class="small">No completed tasks yet</span>
-                            </div>
+                        </form>
+
+                        <div jsf:rendered="#{empty taskHome.donetasks}" class="text-center py-4 text-muted">
+                            <i class="bi bi-check2-all fs-2 d-block mb-2 opacity-50"></i>
+                            <span class="small">No completed tasks yet</span>
                         </div>
                     </div>
                 </div>
             </div>
-        </form>
+        </div>
     </ui:define>
 </ui:composition>
