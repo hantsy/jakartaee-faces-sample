@@ -21,13 +21,13 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 @Location("tasks.xhtml")
 public class HomePageObject {
 
-    @FindBy(id = "tasksForm:todotasks")
+    @FindBy(id = "todotasks")
     private WebElement todotasks;
 
-    @FindBy(id = "tasksForm:doingtasks")
+    @FindBy(id = "doingtasks")
     private WebElement doingtasks;
 
-    @FindBy(id = "tasksForm:donetasks")
+    @FindBy(id = "donetasks")
     private WebElement donetasks;
 
     public void assertTodoTasksSize(int size) {
